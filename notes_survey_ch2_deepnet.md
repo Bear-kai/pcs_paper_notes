@@ -40,7 +40,10 @@
 - **ASAP-Net** Hanwen Cao, ..., Cewu Lu, ... (上交) ASAP-Net: Attention and structure aware point cloud sequence segmentation. [[BMVC 2020](https://arxiv.org/pdf/2008.05149.pdf)] [[github](https://github.com/intrepidChw/ASAP-Net)] [cite 9]
 
 
-- CloudLSTM: A recurrent neural model for spatiotemporal point-cloud stream forecasting. [AAAI 2021] [cite 15]
+- **SequentialPointNet** Xing Li (河海大学), SequentialPointNet: A strong frame-level parallel point cloud sequence classification network for 3D action recognition. [[arxiv 2021](https://arxiv.org/pdf/2111.08492)] [[github](https://github.com/XingLi1012/SequentialPointNet.git)] [cite 1]
+
+
+- CloudLSTM: A recurrent neural model for spatiotemporal point-cloud stream forecasting. [AAAI 2021] [cite 15] 设计了一个conv操作，并结合seq2seq模型，关联度不大。
 
 
 - A closer look at spatiotemporal convolutions for action recognition. [CVPR 2018] [cite 1778]
@@ -318,6 +321,22 @@ to the core points... test on MSRAction3D and Synthia datasets.
 
 
 <details>
+<summary> <b> SequentialPointNet </b> </summary>
+
+- **摘要**：We propose a strong frame-level parallel point cloud sequence network referred to as SequentialPointNet for **3D action recognition**. The key to our approach is to divide the main modeling operations into
+**frame-level units executed in parallel**. Moreover, we propose to flatten the point cloud sequence into a new point data type named **hyperpoint sequence** that preserves the complete spatial structure of each frame. Then, a novel Hyperpoint-Mixer module is introduced to mix intra-frame spatial features and inter-frame temporal features of the hyperpoint sequence. ... achieves up to 10× faster than existing methods... test on both large-scale datasets (NTU RGB+D 60 and
+NTU RGB+D 120) and small-scale datasets (i:e:, MSR Action3D and UTD-MHAD)
+
+- **核心**：构建时空近邻的方式无法并行；本文逐帧（并行）处理，得空间层面的特征，再进行时空层面的融合；
+- **网络结构**：
+    ![SequentialPointNet_archi](assets_ch2/SequentialPointNet_archi.png)
+
+<summary>
+</details>
+
+
+
+<details>
 <summary> <b> ... </b> </summary>
 
 - **摘要**：
@@ -327,4 +346,3 @@ to the core points... test on MSRAction3D and Synthia datasets.
 
 <summary>
 </details>
-

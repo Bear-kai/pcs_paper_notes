@@ -50,20 +50,20 @@ Using Dual Pose Network with Refined Learning of Pose Consistency. [[ICCV 2021](
 - **Latentfusion** Latentfusion: End-to-end differentiable reconstruction and rendering for unseen object pose estimation. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Park_LatentFusion_End-to-End_Differentiable_Reconstruction_and_Rendering_for_Unseen_Object_Pose_CVPR_2020_paper.pdf)] [[github](https://keunhong.com/publications/latentfusion/)] [cite 54]
 
 
-- **--** Real-Time Monocular Pose Estimation of 3D Objects using
-Temporally Consistent Local Color Histograms. [[ICCV 2017](https://openaccess.thecvf.com/content_ICCV_2017/papers/Tjaden_Real-Time_Monocular_Pose_ICCV_2017_paper.pdf)] [[github]()] [cite ]
-
+- TCLCH, Real-Time Monocular Pose Estimation of 3D Objects using
+Temporally Consistent Local Color Histograms. [[ICCV 2017](https://openaccess.thecvf.com/content_ICCV_2017/papers/Tjaden_Real-Time_Monocular_Pose_ICCV_2017_paper.pdf)] [cite 90]
+（RBOT的三篇论文之一）
 
 - Neural Object Fitting - Category level object pose estimation via neural analysis-by-synthesis. [[ECCV 2020](https://arxiv.org/pdf/2008.08145)] [cite 46]
 
-- Reconstruct locally, localize globally: A model free method for object pose estimation. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Cai_Reconstruct_Locally_Localize_Globally_A_Model_Free_Method_for_Object_CVPR_2020_paper.pdf)] [cite 9]
+- **RLLG** Ming Cai (阿德莱德大学), Reconstruct locally, localize globally: A model free method for object pose estimation. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Cai_Reconstruct_Locally_Localize_Globally_A_Model_Free_Method_for_Object_CVPR_2020_paper.pdf)] [cite 9]
 
 - Objectron: A large scale dataset of object-centric videos in the wild with pose
 annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/Ahmadyan_Objectron_A_Large_Scale_Dataset_of_Object-Centric_Videos_in_the_CVPR_2021_paper.pdf)] [cite 45]
 
 
-- SGPA: Structure-Guided Prior Adaptation for
-Category-Level 6D Object Pose Estimation.
+- **SGPA**: Kai Chen, Qi Dou (CUHK), Structure-Guided Prior Adaptation for
+Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/papers/Chen_SGPA_Structure-Guided_Prior_Adaptation_for_Category-Level_6D_Object_Pose_Estimation_ICCV_2021_paper.pdf)] [[page](https://www.cse.cuhk.edu.hk/˜kaichen/projects/sgpa/sgpa.html)] [cite 14]
 
 ## Others
 
@@ -384,8 +384,47 @@ as well as the ModelNet and LINEMOD datasets.
 </details>
 
 
+<details>
+<summary> <b> RLLG (CVPR 2020)  </b> </summary>
 
-Temporally Consistent Local Color Histograms
+- **摘要**：We propose a learning-based method whose input is a collection of images of a target object, and whose output is the pose of the object in a novel view. At inference time, our method maps from the RoI features of the input image
+to a dense collection of object-centric 3D coordinates, one per pixel. This dense 2D-3D mapping is then used to determine 6dof pose using standard PnP plus RANSAC. We seamlessly build our model upon Mask R-CNN. We contribute a new head – the object coordinate head – to the same backbone, whose output is the dense 3D coordinates of the object in object-centric frame. 
+
+- **推理阶段可视化**
+    ![RLLG_vis](assets_pose/RLLG_vis.png)
+
+
+<summary>
+</details>
+
+
+
+<details>
+<summary> <b> SGPA (ICCV 2021)  </b> </summary>
+
+- **摘要**：We take advantage of category prior to overcome the problem of intra-class variation by innovating a structure-guided prior adaptation scheme to accurately estimate 6D pose for individual objects. We propose to leverage their structure similarity to dynamically adapt the prior to the observed object
+
+- **网络结构**
+    ![SGPA_archi](assets_pose/SGPA_archi.png)
+
+
+<summary>
+</details>
+
+
+
+<details>
+<summary> <b> L (CVPR 2020)  </b> </summary>
+
+- **摘要**：
+
+- **网络结构**
+    ![](assets_pose/.png)
+
+
+<summary>
+</details>
+
 
 ...
 

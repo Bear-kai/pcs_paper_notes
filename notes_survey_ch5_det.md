@@ -100,6 +100,10 @@ for amodal 3d object detection. [[IROS 2019](https://arxiv.org/pdf/1903.01864.pd
 
 - **Frustum PointNets** Charles R. Qi (Stanford), Frustum PointNets for 3D Object Detection from RGB-D Data. [[CVPR 2018](https://openaccess.thecvf.com/content_cvpr_2018/papers/Qi_Frustum_PointNets_for_CVPR_2018_paper.pdf)] [[github](https://github.com/charlesq34/frustum-pointnets)] [cite 1639] :star:
 
+
+- **MPPNet** Xuesong Chen (MMLab, CUHK), MPPNet: Multi-Frame Feature Intertwining with Proxy Points for 3D Temporal Object Detection. [[ECCV 2022](https://arxiv.org/pdf/2205.05979)]
+
+
 - 关于VoteNet及其扩展版ImVoteNet，暂不记录于此，可参知乎讲解：[VoteNet](https://zhuanlan.zhihu.com/p/94355668)，[ImVoteNet](https://zhuanlan.zhihu.com/p/125754197)。
 
 - - -
@@ -208,6 +212,8 @@ for amodal 3d object detection. [[IROS 2019](https://arxiv.org/pdf/1903.01864.pd
 <summary> <b> 3DVID (CVPR 2020) 关注 </b> </summary>
 
 - 摘要：模型提出了两个组件：**空间特征编码 + 时空特征聚合**。前者基于Pillar Message Passing Network (PMPNet) 编码每个点云帧，通过迭代消息传递，自适应地从相邻节点中收集信息，有效地扩大了支柱特征的感受野。后者基于Attentive Spatiotemporal Transformer GRU (AST-GRU) 聚合时空信息，利用注意力的记忆门控机制增强了传统的ConvGRU（ICLR'16 处理2D Video的工作）。AST-GRU包含Spatial Transformer Attention (STA)和Temporal Transformer Attention (TTA), 能够分别增强前景目标和对齐动态目标。在nuscence上得到了sota的效果。
+
+- 来自MPPNet的评价：may attend to mismatched proposals due to the dense connections among all proposals.
 
 - **现有问题**：(1) 像PointPillars和VoxelNet这些方法，主要关注局部特征聚合，即用PointNet为单独的体素或支柱提取特征，为了进一步扩大接收域，它们必须重复应用步长或池操作，这将导致空间信息的丢失，本文提出PMPNet解决该问题。(2) 基于LiDAR的3D视频目标检测，首先，在BEV鸟瞰图中，大多数前景对象（汽车、行人）占据小区域，因此背景噪声会主导递归单元的memory，本文用STA模块解决该问题；其次，更新递归单元中的内存时，旧内存和新输入两者的空间特征未对齐，对于运动物体尤是，本文用TTA模块解决。
 
@@ -587,6 +593,21 @@ of oriented boxes in the 3D space. ...test on indoor SUN-RGBD and outdoor KITTI 
 
 - **网络结构**：(1) 视锥体可能朝向许多不同的方向，这导致点云分布的变化范围很大，因此对朝向归一化，使视锥体的中心轴与像平面正交，这种规范化有助于提高算法的旋转不变性；(2) 物体的部分遮挡和背景干扰在自然场景中很常见，这可能严重影响3D定位任务，由于各个物体在物理空间中自然是分开的，所以在3D点云中执行分割更加自然和容易；(3) 值得强调的是，每个视锥体只包含一个感兴趣的对象，除此之外的“其他”点可以是不相关区域的点（例如地面，植被）或被感兴趣对象遮挡的实例，一个视锥体的对象的点在另一个视锥体内可能变成背景混淆点或遮挡点；(4) 在3D实例分割之后，被分类为感兴趣对象的点被提取（Fig.2中的“masking”），在获得这些分割的对象点之后，对其坐标进行归一化以提高算法的平移不变性。(5) 其它暂略...
     ![FrustumPointNet_archi](assets_ch5/FrustumPointNet_archi.png)
+
+<summary>
+</details>
+
+
+
+<details>
+<summary> <b> MPPNet </b> </summary>
+
+- **摘要**：We present two-stage MPPNet for 3D temporal object detection with point cloud sequences. We propose a novel three-hierarchy framework with proxy points for multi-frame feature encoding and interactions to achieve better detection. The three hierarchies conduct per-frame feature encoding, short-clip feature fusion, and whole-sequence feature aggregation. ...test on Waymo Open dataset.
+
+- 要点：(1) 额外预测bbox速度，然后根据iou关联前后帧box形成trajectory；(2) Proxy Points: 在每个时刻t，在3D box中均匀采样$N=n\times n\times n$个点，As they are uniformly sampled in the same way across time, they naturally align the same
+spatial parts of the object proposals over time。这里的代理点，联想到ASTA3DConv中的anchor点；代理的特征有2部分，包括几何的和运动的。（第二点中的假设对于室内物体pose估计任务怕是不适用！不是自然对齐的！）
+- **网络结构**：
+    ![MPPNet_archi](assets_ch2/MPPNet_archi.png)
 
 <summary>
 </details>
