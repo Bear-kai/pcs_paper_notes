@@ -65,6 +65,8 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 - **SGPA**: Kai Chen, Qi Dou (CUHK), Structure-Guided Prior Adaptation for
 Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/papers/Chen_SGPA_Structure-Guided_Prior_Adaptation_for_Category-Level_6D_Object_Pose_Estimation_ICCV_2021_paper.pdf)] [[page](https://www.cse.cuhk.edu.hk/˜kaichen/projects/sgpa/sgpa.html)] [cite 14]
 
+- **PPR-Net** Zhikai Dong (商汤&清华), PPR-Net:Point-wise Pose Regression Network for Instance Segmentation and 6D Pose Estimation in Bin-picking Scenarios. [[IROS 2019](https://ieeexplore.ieee.org/abstract/document/8967895/)] [[github](https://github.com/lvwj19/PPR-Net-plus)] [cite 26]
+
 ## Others
 
 - **UniPose** Bruno Artacho (RIT), UniPose: Unified Human Pose Estimation in Single Images and Videos. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Artacho_UniPose_Unified_Human_Pose_Estimation_in_Single_Images_and_Videos_CVPR_2020_paper.pdf)] [cite 78]
@@ -164,8 +166,7 @@ we propose a coarse to fine training strategy, which enables fine-grained corres
 <details>
 <summary> <b> FS6D (CVPR 2022) </b> </summary>
 
-- 摘要：We study a new open set problem; the few-shot 6D object poses estimation: estimating the 6D pose of an unknown object by a few support views without extra training. We propose a dense prototypes matching framework by extracting and matching
-dense RGBD prototypes with transformers. We propose a large-scale RGBD photorealistic dataset (ShapeNet6D) for network pre-training.
+- 摘要：We study a new open set problem; the few-shot 6D object poses estimation: estimating the 6D pose of an unknown object by a few support views without extra training. We propose a dense prototypes matching framework by extracting and matching dense RGBD prototypes with transformers. We propose a large-scale RGBD photorealistic dataset (ShapeNet6D) for network pre-training.
 
 - 网络结构
     ![FS6D_data](assets_pose/FS6D_data.png)
@@ -414,7 +415,24 @@ to a dense collection of object-centric 3D coordinates, one per pixel. This dens
 
 
 <details>
-<summary> <b> L (CVPR 2020)  </b> </summary>
+<summary> <b> PPR-Net (CVPR 2020)  </b> </summary>
+
+- **摘要**：We propose a simple but novel Point-wise Pose Regression Network (PPR-Net). For each point in the point cloud, the network regresses a 6D pose of the object instance that the point belongs to. We argue that the regressed poses of points from the same object instance should be located closely in pose space. Thus, these points can be clustered into different instances and their corresponding objects’ 6D poses can be estimated simultaneously. It works well in real world robot
+bin-picking tasks.
+
+- **网络结构** 
+    - (1) 输入点云，先Pointnet++提特征，后接4个分支；其中一个做语义分割，得到逐点的类别预测，将语义类别concat到原点云特征，得到所谓semantic-class-aware的特征；该组合特征输入到另外3个分支，分别回归逐点的center预测，逐点的旋转角预测，逐点的物体可见性预测（可见性衡量了该点所属物体被遮挡的程度）；
+    - (2) 推理阶段：高于可见性阈值的点，才有voting的权利，先将这些点基于密度聚类（同一物体上的点，预测的center位置应该是聚在一起的），相当于在前面语义分割的基础上，再进行实例分割，然后每个实例的pose，就是它包含的有效点的voting的平均；
+    - (3) 训练阶段：包含3个损失，一个是语义分割（即逐点的分类）损失，用的交叉熵；一个是逐点的可见性，这里gt是启发式得到的，用当前点所属物体包含的点数，除以场景中一个物体包含的最大点数，即近似了物体被遮挡程度；第三个是pose约束，用到了另一篇文章中定义的pose metric，直接在欧式空间中算distance！
+    ![PPRNet_archi](assets_pose/PPRNet_archi.png)
+
+
+<summary>
+</details>
+
+
+<details>
+<summary> <b> ... ()  </b> </summary>
 
 - **摘要**：
 
@@ -425,7 +443,5 @@ to a dense collection of object-centric 3D coordinates, one per pixel. This dens
 <summary>
 </details>
 
-
-...
 
 
