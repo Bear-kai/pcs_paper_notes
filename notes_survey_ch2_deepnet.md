@@ -145,6 +145,9 @@ feature aggregation after grouping, which losses information
     ![P4Transformer_archi](assets_ch2/P4Transformer_archi.png)
 - **Datasets**: MSRAction3D, NTU RGBD 60/120, Synthia 4D
 
+- **后补充** 在MSRAction3D上的实验结果。
+    ![P4Transformer_result](assets_ch2/P4Transformer_result.png)
+
 <summary>
 </details>
 
