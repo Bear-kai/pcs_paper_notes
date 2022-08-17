@@ -34,7 +34,7 @@
 - **ASTA3DConv** Guangming Wang (上交), Anchor-Based Spatio-Temporal Attention 3D convolutional networks for dynamic 3D point cloud sequences. [[TIM 2021](https://arxiv.org/pdf/2012.10860)] [[github](https://github.com/IRMVLab/ASTA3DConv)] [cite 12]
 
 
-- **PointLSTM** Yuecong Min (中科院), An efficient pointlstm for point clouds based gesture recognition. [[CVPR 2020](http://openaccess.thecvf.com/content_CVPR_2020/papers/Min_An_Efficient_PointLSTM_for_Point_Clouds_Based_Gesture_Recognition_CVPR_2020_paper.pdf)] [cite 42]
+- **PointLSTM** Yuecong Min (中科院), An efficient pointlstm for point clouds based gesture recognition. [[CVPR 2020](http://openaccess.thecvf.com/content_CVPR_2020/papers/Min_An_Efficient_PointLSTM_for_Point_Clouds_Based_Gesture_Recognition_CVPR_2020_paper.pdf)] [[github](https://github.com/ycmin95/pointlstm-gesture-recognition-pytorch)] [cite 42]
 
 
 - **ASAP-Net** Hanwen Cao, ..., Cewu Lu, ... (上交) ASAP-Net: Attention and structure aware point cloud sequence segmentation. [[BMVC 2020](https://arxiv.org/pdf/2008.05149.pdf)] [[github](https://github.com/intrepidChw/ASAP-Net)] [cite 9]
@@ -152,9 +152,10 @@ feature aggregation after grouping, which losses information
 <details>
 <summary><b> PST-Transformer (TPAMI 2022) </b></summary>
 
-- 本文是作者的P4Transformer的期刊扩展版；
-- 贴一个对比图，具体暂不深究；
+- 本文是作者的P4Transformer的期刊扩展版；相比会议版，1. 增加了理论分析（类似Pointnet中的证明）；2. 增加对空时结构的编码！
+- 上述第二点比较晦涩，简单来说就是对Transformer中的V做了文章。
     ![PST_transformer](assets_ch2/PST_transformer.png)
+    ![fig3_PST-Transformer](assets_ch2/fig3_PST-Transformer.png)
 
 <summary>
 </details>
@@ -315,6 +316,9 @@ to the core points... test on MSRAction3D and Synthia datasets.
 
 - **PointLSTM嵌入FlickerNet(BMVC 2019)**：
     ![PointLSTM_archi](assets_ch2/PointLSTM_archi.png)
+
+- **后补充** (1) 对比PointLSTM和PointRNN(具体是比较PointRNN论文中的PointLSTM变体），发现两者基本是一致的！即，将坐标偏移，当前帧特征，前序帧state三者concat，经线性映射后得i,f,o三个门控和cell等；注意本文的PointLSTM表面上将y单独列写，实际上等同于concat！ (2) 一点区别，PointRNN多了一步计算cell的步骤；PointLSTM提了一个Point-shared states，即一帧中的所有点，都共享一组(h,c)状态！ 
+    ![PointLSTM_vs_PointRNN](assets_ch2/PointLSTM_vs_PointRNN.png)
 
 <summary>
 </details>
