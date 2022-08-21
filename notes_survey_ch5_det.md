@@ -202,6 +202,7 @@ for amodal 3d object detection. [[IROS 2019](https://arxiv.org/pdf/1903.01864.pd
 - 网络结构
     ![LSTM-Det_vis](assets_ch5/LSTM-Det_vis.png)
     ![LSTM-Det_overview](assets_ch5/LSTM-Det_overview.png)
+    ![LSTM-Det_sub](assets_ch5/LSTM-Det_sub.png)
 
 <summary>
 </details>
@@ -230,6 +231,8 @@ for amodal 3d object detection. [[IROS 2019](https://arxiv.org/pdf/1903.01864.pd
     - (2) **TTA模块**，核心是采用**可变形卷积**的思想，对齐$H_{t-1}$和$X_t'$中的运动物体特征；结合Eq.(14)简单理解可变形卷积，其关键是给卷积核中的每个元素，预测一个偏移；比如，对于kernel大小为3x3的卷积核，有$M=9$个元素，$w_m$是对应的可学习权重，$h_q$是$H_{t-1}$中位置$q\in w\times h$处的元素，$p_m\in \{(-1,-1),(-1,0),...,(1,1)\}$是预定义的offset，所以$h_{q+p_m}$对应了以$q$为中心的$3\times 3$区域；可变形卷积是另起一个分支，基于输入特征图，预测kernel偏移$\Delta p_m \in \Delta P_{t-1}=\Phi_R(H_{t-1})$，参Eq.(16)，作者额外考虑运动信息（motion map），把$(H_{t-1} - X_t')$也concat起来一并输入；这里的intuition是，对于静态物体，两者作差应该近乎0，对于运动物体，两者作差应该有较高响应；有了偏移，原本规则的$3\times 3$网格，就可以变形成不规则的形状；由于偏移后的位置坐标可能是小数，为了可导，采用它周围的4个整数位置的特征，做双线性插值！由于query和key分别来自$H_{t-1}$和$X_t'$，TTA模块本质是交叉注意力（inter-attention）；（注：关于可变形卷积的实现，是通过"输入图重新排列+普通卷积"间接操作，暂不深究）
     
     ![3DVID_ASTGRU](assets_ch5/3DVID_AST.png)
+
+- **补充**：感觉空间特征的提取很冗余：(1) 基于图的PMPNet提取pillar特征，已经将感受野扩展到高阶近邻，得到了non-local特征；然后变成regular grid用2D CNN进一步特征变换；(2) 到了AST-GRU模块，又搞了一个空间transformer，在wxh的范围内执行注意力操作，获取上下文信息以增强特征判别性；==> 主观上，感觉空间transformer和PMPNet中的graph信息传播，两者冗余了，都可以看作是扩大感受野！虽然论文的消融实验证明二者都是有效的...
 
 <summary>
 </details>
