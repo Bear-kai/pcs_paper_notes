@@ -89,12 +89,16 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 <details>
 <summary> <b> RNNPose (CVPR 2022) - 关注 </b> </summary>
 
-- 需要提供物体的CAD模型，和初始的pose；
+- 需要提供物体的CAD模型，和初始的pose；注意它的目的是做pose refinement!
+- 对我而言，它的优点是较好地将RAFT框架和pose微调任务结合起来了，并且利用了render和非线性优化技术得到end2end模型，以及明确了光流场和3D刚体变换之间的关系(Eq.1)；缺点是，如作者本人所言，该模型是object-specific，对于novel object, pose refinement module需要进一步被微调！
 
 - 摘要：本文提出一种方法，从**单目图像**中估计物体的6-Dof位姿，采用了基于RNN的框架，能较鲁棒地应对erroneous初始pose和遮挡问题。在循环迭代中，基于估计的匹配场（correspondence field），物体的pose优化被建模为非线性最小二乘问题，然后基于可微的LM优化算法求解，可实现端到端训练，其中，匹配场的估计和位姿优化这两个步骤是交替进行的。在LINEMOD，Occlusion-LINEMOD和YCB-Video上达到了SOTA效果。
 
 - 算法架构：3D model表示成从各个角度渲染的2D query template的集合。
     ![RNNPose_archi](assets_pose/RNNPose_archi.png)
+
+- 详细框架：其中render是基于pytorch3d；render包括将3D model根据init_pose渲染为图片，还有将3D features渲染为2D context feature map。
+![RNNPose_fig2](assets_pose/RNNPose_fig2.png)
 
 <summary>
 </details>
@@ -121,7 +125,12 @@ the 3D object model and can generalize to unseen objects.
 
 - 作者argue一个pose估计器应该具有的性质包括：1) 泛化性，指泛化到任何物体；2) model-free；3) simple-inputs,只须输入rgb，无需物体mask或depth map。考虑到基于回归的旋转和平移预测，受限于特定的实例或者类别，无法泛化到任意未见物体；并且，由于缺乏3D model，无法构建2D-3D匹配，因此基于PnP的方法也不能用，因此作者采用基于图像匹配的方式，进行coarse-to-fine的pose估计。
 
-- 网络结构：模型输入是一张query image，和一堆reference image，并且参考图像中的物体pose是已知的，感觉这个要求也不实用啊？！--> **这个应该是Few-shot setting，相当于通过少量标注样本，就可以泛化到该instance，另参FS6D**。
+- 网络结构：模型输入是一张query image，和一堆reference image，并且参考图像中的物体pose是已知的，感觉这个要求也不实用啊？！文中说的是："Given Nr images of an object with known camera poses"，搞不清到底是已知谁的pose；另外Data normalization中提到利用三角化来估计物体的size，存疑，三角化不是存在尺度不确定性问题嚒？！
+
+- 大致流程：基于correlation的object location，定位出query图片中的物体位置，得出大致的平移分量；然后基于网络学习相似性度量，挑选ref图像中view最接近的图像，结合预测的in-plane rotation得粗糙的旋转分量；最后pose refiner利用3D CNN和transformer的特征信息融合方式，进行输出微调。
+
+- **这个应该是Few-shot setting，相当于通过少量标注样本，就可以泛化到该instance，另参FS6D**。虽然无须3DCAD model, depth和mask信息，但要提供一些ref图片！
+
     ![Gen6D_vis](assets_pose/Gen6D_vis.png)
     ![Gen6D_archi](assets_pose/Gen6D_archi.png)
 
