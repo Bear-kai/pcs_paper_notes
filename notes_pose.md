@@ -321,7 +321,11 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 <details>
 <summary> <b> OnePose (CVPR 2022) 关注(SFM重建)  </b> </summary>
 
-- OnePose：One-shot之意！
+- OnePose：One-shot之意！因涉及重建，自然model-free，要现成的2D检测器提供bbox！
+- 思路：基于传统的定位pipeline来做物体pose任务，即“offline mapping + online localization”，mapping就是要先给定一段物体的video scan，利用SFM进行稀疏物体点云重建（物体点云看作不动的scene）；localization就是对于query img，通过特征匹配，获取相机的pose，注意这个pose是相机相对于scene的，这里也即相对于物体的，所以相机pose的逆，就是最终要求的物体的pose！关于特征匹配，传统是2D到2D，作者提出3D-2D，即先把ref video frame中的2D特征点的描述子，基于注意力聚合为对应的3D地图点的描述子，然后基于描述子，匹配3D地图点和query img中的2D特征点，有了匹配，就可以通过RANSAC PNP求解位姿！
+- 其他: 论文中是基于ARKit/ARCore工具标注出物体的bbox（相当于指定标准的物体坐标系）和每帧的相机位姿，拍摄ref video时假设物体竖直放置于平面，且保持静止，故bbox限于绕竖直的z轴旋转；OnePose的位姿估计模块仅处理关键帧，所以还有位姿tracking模块处理每一帧，这部分在补充材料中，暂略~
+- 缺点：如作者所言，依赖于局部特征匹配（特征如SIFT, SuperPoint，匹配器如最近邻，SuperGlue），匹配限于3D bbox内的重建点云，和query img上的2D bbox内的特征点，所以对于低纹理的物体可能失败，当训练和测试的seq差异太大时，也可能失败！
+
 - **摘要**：OnePose draws the idea from visual localization and only requires a simple RGB video scan of the object to build a sparse SfM model of the object. We propose a new graph attention network that directly matches 2D interest points in the query image with the 3D points in the SfM model, resulting in efficient and robust pose estimation. ...run in real-time. ... test on self-collected dataset that consists of 450 sequences of 150 objects.
 
 - 关注related works章节；摘录对NOCS系列方法的评价： A limitation of this line of work is that the shape and the appearance of some instances could vary significantly even they belong to the same category, thus the generalization capabilities of trained networks over these instances are questionable. Moreover, accurate CAD models are still required
@@ -363,7 +367,9 @@ for ground-truth NOCS map generation during training, and different networks nee
 <details>
 <summary> <b> Cosypose (ECCV 2020) </b> </summary>
 
-- 处理known objects；Cosy来自consistency之意！
+- Cosy是consistency之意！处理包含known objects的scene，即物体的3D CAD模型已知；算法输入是多视图的img；第一阶段，先按单目的方式去检测物体并估计其pose；第二阶段，参见Fig.5，对任意2个view的img pair，挑2组object pair，并根据object pose得到这2个view的cam delta pose(基于RANSAC丢掉不靠谱的cam pose预测，也即丢掉了不靠谱的object pair：对应标签一致但不是同一个实例)；然后就可以构建graph，其中顶点是object，边连接构成pair的object，于是graph中的一个连通分量就对应了同一个object实例！第三阶段，构建object-level的BA优化问题，扫了一眼代码，应该是直接手写前向雅可比，及LM优化步骤的，未用到优化库。
+- 优点：将单目物体pose估计，融合到多视图优化框架下！能同时得到object-level的scene重建，各物体的pose，以及各view的相机pose；缺点：自分析，根据第二阶段的相对相机pose的计算，CosyPose应该只能处理静态场景！
+
 - **摘要**：We introduce an approach for recovering the 6D pose of multiple known objects in a scene captured by a set of input images with unknown camera viewpoints. (1) We present a **single-view single-object** 6D pose estimation method to generate pose hypotheses; (2) We **jointly estimate** camera viewpoints and 6D poses of all objects in a single consistent scene; (3) We develop a method for global scene refinement by solving an **object-level bundle adjustment** problem. ... test on YCB-Video and T-LESS datasets.
 
 - **示意图**
@@ -371,6 +377,9 @@ for ground-truth NOCS map generation during training, and different networks nee
 
 - **算法流程**
     ![CosyPose_pipe](assets_pose/CosyPose_pipe.png)
+
+- 第二阶段计算相机delta pose的图示
+    ![CosyPose_Fig5](assets_pose/CosyPose_Fig5.png)
 
 <summary>
 </details>
