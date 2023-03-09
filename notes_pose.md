@@ -107,6 +107,9 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 <details>
 <summary> <b> GPV-Pose (CVPR 2022) - 关注 </b> </summary>
 
+1. 虽然自称是depth-based的方法，但实际上也是要用rgb图片，用比如maskRCNN处理rgb图得到目标物体的mask，然后结合depth图得到物体对应的点云！实验对比说是由于DualPoseNet，并且是一个模型训练所有类别？！
+2. 自以为，该方法的核心是进行**冗余预测**，包括直接回归出R,t和s得到pose，和预测逐点到bbox的6个面的方向和距离，投票出bbox的位置朝向大小从而得到pose；除了预测Pose，还搞了个重构分支，反正它们提取特征的backbone是共享的，故宣称这样做利于特征的学习！
+3. 然后加了2个几何约束，一个约束思路和建模都比较直观，比如对于旋转分量，就是让回归分支预测的rx和ry，跟bbox投票分支得到的平面法向一致，对于平移分量，就是利用点法线公式，构建bbox平面到原点距离，跟bbox的size之间的关系！另一个约束的思路还算直观，但是建模太tricky，暂略；
 - 摘要：利用几何信息来增强类别级pose估计的特征学习，一者引入解耦的置信度驱动的旋转表达，二来提出几何引导的逐点投票进行3D bbox估计。最后，利用不同的输出流，加入几何一致性约束，可以进一步提升性能。GPV-Pose的推理速度能达到20FPS。
 
 - 网络结构：下面$r_x$和$r_y$是平面法向；预测的残差平移，通过加上输入点云的均值，得到最终的平移量；预测的残差size，通过加上预先计算的类均值size，得到最终的size；对称考虑镜像对称和旋转对称；对于逐点bbox投票，给每个点预测它到每个面的方向，距离和置信度，因此每个点要预测的维度就是$(3+1+1)\times 6 = 30$；置信度感知的损失函数（论文中Eq.(1)和Eq.(6)有点意思）；关于2个几何约束，暂略。
@@ -174,6 +177,8 @@ we propose a coarse to fine training strategy, which enables fine-grained corres
 
 <details>
 <summary> <b> FS6D (CVPR 2022) </b> </summary>
+
+- 没有太大意思，RGBD input，基于FFB6D的特征提取网络，加上transformer进行特征增强，构建support view和query之间的匹配关系，论文废话有点多，部分细节没说清楚，自分析应该是能得到depth point之间的匹配关系，然后利用Umeyama算法即得query相对于support的delta pose，再根据support的pose恢复出query的Pose。噢，还搞了一个PBR类型的rgbd数据集。
 
 - 摘要：We study a new open set problem; the few-shot 6D object poses estimation: estimating the 6D pose of an unknown object by a few support views without extra training. We propose a dense prototypes matching framework by extracting and matching dense RGBD prototypes with transformers. We propose a large-scale RGBD photorealistic dataset (ShapeNet6D) for network pre-training.
 
@@ -253,8 +258,10 @@ based on spherical convolutions, and design Spherical Fusion wherein for a bette
 <details>
 <summary> <b> KDFNet (IROS 2021) </b> </summary>
 
-- 关键词：Model-based；预测关键点；PnP
+- 关键词：Model-based；RGB input；关键点距离场；PnP；
 - 要解决：基于pixel-wise voting的方法是direction-based，即每个像素预测它到关键点的2D方向；该方法有一个前提假设，投票方向之间的夹角要足够大，因此该假设不适用于细长的物体，为此，本文提出KDF。
+- 本文的3D关键点，follow PVNet是基于FPS采样得到！本文的voting，是先采样一堆像素(voters)，然后每3个为一组，两两组合可以预测3个关键点位置候选，这样重复N次，得3N个候选，然后基于RANSAC思路，对每个候选，让所有voters对它投票，最后取score最高的候选作为最终预测！关于metric，除了常规的ADD accuracy和ADD AUC，还有2D projection accuracy（以偏差5个像素为阈值）。
+- 摘自引言：主要有2类方法来定位2D keypoints，包括heatmap-based 和 voting-based，且后者对于遮挡情况更加鲁棒！
 - 摘要：We propose a novel continuous representation called Keypoint Distance Field
 (KDF) for projected 2D keypoint locations. Formulated as a 2D array, each element of the KDF stores the 2D Euclidean distance between the corresponding image pixel and a specified
 projected 2D keypoint. We use a fully convolutional neural network to regress the KDF for each keypoint.
