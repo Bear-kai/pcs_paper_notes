@@ -376,7 +376,7 @@ for ground-truth NOCS map generation during training, and different networks nee
 
 
 <details>
-<summary> <b> Cosypose (ECCV 2020) </b> </summary>
+<summary> <b> Cosypose (ECCV 2020) - 物体级场景重建 </b> </summary>
 
 - Cosy是consistency之意！处理包含known objects的scene，即物体的3D CAD模型已知；算法输入是多视图的img；第一阶段，先按单目的方式去检测物体并估计其pose；第二阶段，参见Fig.5，对任意2个view的img pair，挑2组object pair，并根据object pose得到这2个view的cam delta pose(基于RANSAC丢掉不靠谱的cam pose预测，也即丢掉了不靠谱的object pair：对应标签一致但不是同一个实例)；然后就可以构建graph，其中顶点是object，边连接构成pair的object，于是graph中的一个连通分量就对应了同一个object实例！第三阶段，构建object-level的BA优化问题，扫了一眼代码，应该是直接手写前向雅可比，及LM优化步骤的，未用到优化库。
 - 优点：将单目物体pose估计，融合到多视图优化框架下！能同时得到object-level的scene重建，各物体的pose，以及各view的相机pose；缺点：自分析，根据第二阶段的相对相机pose的计算，CosyPose应该只能处理静态场景！
