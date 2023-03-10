@@ -41,7 +41,7 @@ Using Dual Pose Network with Refined Learning of Pose Consistency. [[ICCV 2021](
 - **`TemporalFusion扩展`** Rui Huang (中科大), Estimating 6D Object Poses with Temporal Motion Reasoning for Robot Grasping in Cluttered Scenes. [[RAL 2022](https://ieeexplore.ieee.org/abstract/document/9699040/)] [[github](https://github.com/mufengjun260/H-MPose)] [cite 0]
 
 
-- **Morefusion** Kentaro Wada (帝国理工), Morefusion: Multi-object reasoning for 6d pose estimation from volumetric fusion, [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wada_MoreFusion_Multi-object_Reasoning_for_6D_Pose_Estimation_from_Volumetric_Fusion_CVPR_2020_paper.pdf)] [[github]()] [cite 48]
+- **Morefusion** Kentaro Wada (帝国理工), Morefusion: Multi-object reasoning for 6d pose estimation from volumetric fusion, [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wada_MoreFusion_Multi-object_Reasoning_for_6D_Pose_Estimation_from_Volumetric_Fusion_CVPR_2020_paper.pdf)] [cite 48]
 
 
 - **Cosypose** Cosypose: Consistent multi-view multi-object 6d pose estimation. [[ECCV 2020](https://arxiv.org/pdf/2008.08465)] [[page](https://www.di.ens.fr/willow/research/cosypose/)] [cite 133]
@@ -87,7 +87,7 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 
 
 <details>
-<summary> <b> RNNPose (CVPR 2022) - 关注 </b> </summary>
+<summary> <b> RNNPose (CVPR 2022) - 迭代pose refine </b> </summary>
 
 - 需要提供物体的CAD模型，和初始的pose；注意它的目的是做pose refinement!
 - 对我而言，它的优点是较好地将RAFT框架和pose微调任务结合起来了，并且利用了render和非线性优化技术得到end2end模型，以及明确了光流场和3D刚体变换之间的关系(Eq.1)；缺点是，如作者本人所言，该模型是object-specific，对于novel object, pose refinement module需要进一步被微调！
@@ -105,9 +105,9 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 
 
 <details>
-<summary> <b> GPV-Pose (CVPR 2022) - 关注 </b> </summary>
+<summary> <b> GPV-Pose (CVPR 2022) - 冗余预测：R/t/s回归 + bbox投票 </b> </summary>
 
-1. 虽然自称是depth-based的方法，但实际上也是要用rgb图片，用比如maskRCNN处理rgb图得到目标物体的mask，然后结合depth图得到物体对应的点云！实验对比说是由于DualPoseNet，并且是一个模型训练所有类别？！
+1. 虽然自称是depth-based的方法，但实际上也是要用rgb图片，用比如maskRCNN处理rgb图得到目标物体的mask，然后结合depth图得到物体对应的点云！实验对比说是优于DualPoseNet，并且是一个模型训练所有类别？！
 2. 自以为，该方法的核心是进行**冗余预测**，包括直接回归出R,t和s得到pose，和预测逐点到bbox的6个面的方向和距离，投票出bbox的位置朝向大小从而得到pose；除了预测Pose，还搞了个重构分支，反正它们提取特征的backbone是共享的，故宣称这样做利于特征的学习！
 3. 然后加了2个几何约束，一个约束思路和建模都比较直观，比如对于旋转分量，就是让回归分支预测的rx和ry，跟bbox投票分支得到的平面法向一致，对于平移分量，就是利用点法线公式，构建bbox平面到原点距离，跟bbox的size之间的关系！另一个约束的思路还算直观，但是建模太tricky，暂略；
 - 摘要：利用几何信息来增强类别级pose估计的特征学习，一者引入解耦的置信度驱动的旋转表达，二来提出几何引导的逐点投票进行3D bbox估计。最后，利用不同的输出流，加入几何一致性约束，可以进一步提升性能。GPV-Pose的推理速度能达到20FPS。
@@ -120,7 +120,7 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 
 
 <details>
-<summary> <b> Gen6D (arxiv 2022) </b> </summary>
+<summary> <b> Gen6D (arxiv 2022) - 小样本：学好特征 </b> </summary>
 
 - 摘要：Existing generalizable pose estimators either need the high-quality object models or require additional depth maps or object masks in test time, which significantly limits their
 application scope. In contrast, our pose estimator only requires some posed images of the unseen object and is able to accurately predict poses of the object in arbitrary environments. Gen6D consists of an object detector, a viewpoint selector and a pose refiner, all of which do not require
@@ -176,7 +176,7 @@ we propose a coarse to fine training strategy, which enables fine-grained corres
 
 
 <details>
-<summary> <b> FS6D (CVPR 2022) </b> </summary>
+<summary> <b> FS6D (CVPR 2022) - 小样本：学好特征 </b> </summary>
 
 - 没有太大意思，RGBD input，基于FFB6D的特征提取网络，加上transformer进行特征增强，构建support view和query之间的匹配关系，论文废话有点多，部分细节没说清楚，自分析应该是能得到depth point之间的匹配关系，然后利用Umeyama算法即得query相对于support的delta pose，再根据support的pose恢复出query的Pose。噢，还搞了一个PBR类型的rgbd数据集。
 
@@ -238,7 +238,7 @@ Occlusion-LINEMOD datasets.
 
 
 <details>
-<summary> <b> DualPoseNet (ICCV 2021) </b> </summary>
+<summary> <b> DualPoseNet (ICCV 2021) - 冗余预测：R/t/s回归 + NOCS回归 </b> </summary>
 
 - 核心：同时使用“直接pose回归”和“NOCS坐标预测”两种pose估计方案。
 
@@ -256,7 +256,7 @@ based on spherical convolutions, and design Spherical Fusion wherein for a bette
 
 
 <details>
-<summary> <b> KDFNet (IROS 2021) </b> </summary>
+<summary> <b> KDFNet (IROS 2021) - 基于距离场的2D关键点投票 </b> </summary>
 
 - 关键词：Model-based；RGB input；关键点距离场；PnP；
 - 要解决：基于pixel-wise voting的方法是direction-based，即每个像素预测它到关键点的2D方向；该方法有一个前提假设，投票方向之间的夹角要足够大，因此该假设不适用于细长的物体，为此，本文提出KDF。
@@ -275,14 +275,18 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 
 <details>
-<summary> <b> CenterSnap (ICRA 2022) - 关注(重建+pose) </b> </summary>
+<summary> <b> CenterSnap (ICRA 2022) - center系单阶段！形状重建 + 9D pose </b> </summary>
 
 - 要解决：现有的基于“标准坐标回归”和“直接pose回归”方案，计算量大，并且在复杂的多目标场景中性能不好。Existing approaches mainly follow a complex multi-stage pipeline which first localizes and detects each object instance in the image and then regresses to either their 3D meshes or 6D poses. These approaches suffer from high-computational cost and low performance in complex multi-object scenarios, where occlusions can be present. 
 
 - 摘要：同时进行多目标3D重建和基于单视图RGB-D的pose估计，参考CenterNet将目标表示为点。 This paper studies the complex task of simultaneous multi-object 3D reconstruction, 6D pose and size estimation from a single-view RGB-D observation. Our method treats object instances as spatial centers where each center denotes the complete shape of an object along with its 6D pose and size.
 
-- 网络结构
+- 单阶段和两阶段框架对比
     ![CenterSnap_compare](assets_pose/CenterSnap_compare.png)
+- 网络结构：
+  1. 直接输入RGB-D图片，提取多尺度FPN特征。这里直接resnet处理depth图好像不太常见！
+  2. FPN特征分别输入2个head网络，其中heatmap head用于定位物体的center，param head用于输出全部3D信息，包括shape的128维latent code，和13维的Pose信息（即9维R，3维t，1维s），至于3维的size，可以从latent code重建的标准化的物体点云的bbox获取到，再乘以scale缩放到原来尺寸！
+  3. shape的latent code的ground truth，是通过自编码器预先训练学习的！
     ![CenterSnap_archi](assets_pose/CenterSnap_archi.png)
 
 <summary>
@@ -290,7 +294,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 
 <details>
-<summary> <b> TemporalFusion (IROS 2021) -- 强相关！ </b> </summary>
+<summary> <b> TemporalFusion (IROS 2021) -- 时序特征融合！ </b> </summary>
 
 - 自评：1.该工作是model-based而非类别级；2. 时序融合的方式还是太粗糙，直接concat，不过好歹避免了对齐问题（FaF中直接concat特征图会引入对不齐的问题）；3. 实验方面仅仅对比了DenseFusion。
 
@@ -309,7 +313,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 
 <details>
-<summary> <b> YOLOPose (arxiv 2022) 关注 </b> </summary>
+<summary> <b> YOLOPose (arxiv 2022)  </b> </summary>
 
 - **摘要**：We propose YOLOPose, a **Transformer-based multi-object monocular 6D pose estimation** method based on **keypoint regression**. In contrast to the standard heatmaps for predicting keypoints in an image, we directly regress the keypoints.  Additionally, we employ a learnable orientation estimation module to predict the orientation from the keypoints. Our model is **end-to-end** differentiable and is suitable for **real-time** applications. ...test on the YCBVideo dataset.
 
@@ -326,7 +330,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 
 <details>
-<summary> <b> OnePose (CVPR 2022) 关注(SFM重建)  </b> </summary>
+<summary> <b> OnePose (CVPR 2022) - SFM重建 + 转为相机定位任务  </b> </summary>
 
 - OnePose：One-shot之意！因涉及重建，自然model-free，要现成的2D检测器提供bbox！
 - 思路：基于传统的定位pipeline来做物体pose任务，即“offline mapping + online localization”，mapping就是要先给定一段物体的video scan，利用SFM进行稀疏物体点云重建（物体点云看作不动的scene）；localization就是对于query img，通过特征匹配，获取相机的pose，注意这个pose是相机相对于scene的，这里也即相对于物体的，所以相机pose的逆，就是最终要求的物体的pose！关于特征匹配，传统是2D到2D，作者提出3D-2D，即先把ref video frame中的2D特征点的描述子，基于注意力聚合为对应的3D地图点的描述子，然后基于描述子，匹配3D地图点和query img中的2D特征点，有了匹配，就可以通过RANSAC PNP求解位姿！
@@ -350,7 +354,7 @@ for ground-truth NOCS map generation during training, and different networks nee
 
 
 <details>
-<summary> <b> Morefusion (CVPR 2020) 关注 </b> </summary>
+<summary> <b> Morefusion (CVPR 2020)  </b> </summary>
 
 - 处理known objects
 - **摘要**：We present a system which can estimate the accurate poses of multiple **known objects** in contact and occlusion from real-time, embodied multi-view vision. Our approach makes 3D object pose proposals from single RGBD views, accumulates pose estimates and non-parametric occupancy information from multiple views as the camera moves, and performs joint optimization to estimate consistent, non-intersecting poses for multiple objects in contact. ...test on YCB-Video, and our own challenging Cluttered YCB-Video.
@@ -393,17 +397,18 @@ for ground-truth NOCS map generation during training, and different networks nee
 
 
 <details>
-<summary> <b> Latentfusion (CVPR 2020) 关注 </b> </summary>
+<summary> <b> Latentfusion (CVPR 2020) - 小样本：重建+渲染 </b> </summary>
 
-- 处理unseen objects
-- **摘要**：We present a network that reconstructs a latent 3D representation of an object using a small number of reference views at inference time. Our network
-is able to render the latent 3D representation from arbitrary views. Using this neural renderer, we directly optimize for pose given an input image. By training our network with a large number of 3D shapes for **reconstruction and rendering**, our network generalizes well to **unseen objects**. We present a new dataset for unseen object pose estimation–**MOPED**. ...test on MOPED
-as well as the ModelNet and LINEMOD datasets.
+- 处理unseen objects；render-and-compare；
+- **摘要**：We present a network that reconstructs a latent 3D representation of an object using a small number of reference views at inference time. Our network is able to render the latent 3D representation from arbitrary views. Using this neural renderer, we directly optimize for pose given an input image. By training our network with a large number of 3D shapes for **reconstruction and rendering**, our network generalizes well to **unseen objects**. We present a new dataset for unseen object pose estimation–**MOPED**. ...test on MOPED as well as the ModelNet and LINEMOD datasets.
 
-- **网络结构**
+- **重建+渲染用于位姿估计**
+    1. 重建：这里是指在latent space中的重建！给定一些reference RGB-D图片，利用modeler构建latent object，其实就是先用2D UNet提特征，然后lift到3D grid中，再3D UNet继续提特征，简单理解，正常3D空间中的一个点只有3维坐标信息，现在扩展成了C维的特征向量！每个视图view下都能构建一个latent object，它们分别处于各自的cam坐标系下，可以转到obj坐标系下，这样就能整合成唯一的latent object，这里可以通过channel-wise的均值池化，论文中是采用RNN的方式融合！
+    2. 渲染：简单把它看作上述重建的逆过程，也是通过3D/2D的UNet进行特征处理，最后输出depth和mask图；因为rgb图中的高频信息不太容易由NN去学习，所以论文采用了Image-based Rendering(IBR)技术，单独得到rgb图。简单来说，query的像素点，根据cam内参及query和ref的pose，可以找到各个ref图像上匹配像素，取这些匹配像素的rgb进行blend就得到了query的rgb值！
+    3. 位姿估计：利用重建网络的modeler处理ref图，获取latent object，然后用渲染网络，在给定的init_pose下，渲染得到对应的depth和mask图，基于若干loss进行梯度反传，直接优化pose参数！
     ![LatentFusion_archi](assets_pose/LatentFusion_archi.png)
 
-- **子网络结构**
+- **重建+渲染的网络结构**
     ![LatentFusion_archi2](assets_pose/LatentFusion_archi2.png)
 
 <summary>
