@@ -35,6 +35,9 @@ Using Dual Pose Network with Refined Learning of Pose Consistency. [[ICCV 2021](
 
 - **OnePose** Jiaming Sun (浙大&商汤), OnePose: One-Shot Object Pose Estimation without CAD Models. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Sun_OnePose_One-Shot_Object_Pose_Estimation_Without_CAD_Models_CVPR_2022_paper.pdf)] [[github](https://zju3dv.github.io/onepose/)] 
 
+    - 扩展篇OnePose++: Keypoint-Free One-Shot Object Pose
+Estimation without CAD Models. [[arxiv 2023](https://arxiv.org/pdf/2301.07673.pdf)]
+
 
 - **`TemporalFusion`** Fengjun Mu (中科大), TemporalFusion: Temporal Motion Reasoning with Multi-Frame Fusion for 6D Object Pose Estimation. [[IROS 2021](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9636583)] [[github](https://github.com/mufengjun260/TemporalFusion21)] [cite 0]
 
@@ -69,7 +72,11 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 
 - **OLD-Net** Zhaoxin Fan (人大), Object level depth reconstruction for category level 6d object pose estimation from monocular RGB image. [[ECCV 2022](https://arxiv.org/pdf/2204.01586.pdf)] [[github]()] [cite 6]
 
+    <details>
+    <summary> 补注 </summary>
+
     输入RGB，同时预测**物体级深度图**和NOCS表示，并将两者对齐(umeyama)得到物体Pose！具体做法暂略，另外一个可以用来预测深度的工具是：arxiv2022_GCVD_Globally Consistent Video Depth and Pose Estimation。
+    </details>
 
 - **NeRF-Pose** Fu Li (国防科大&TUM), Nerf-pose: A first-reconstruct-then-regress approach for weakly-supervised 6d object pose estimation. [[arxiv 2022](https://arxiv.org/pdf/2203.04802.pdf)] [cite 8]
 
@@ -79,11 +86,11 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 - **CenterPose** Yunzhi Lin (佐治亚理工), Single-Stage Keypoint-Based Category-Level
 Object Pose Estimation from an RGB Image. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
 
-    (**tracking姊妹篇**: Keypoint-Based Category-Level Object Pose Tracking from an RGB
-Sequence with Uncertainty Estimation)
+    <details>
+    <summary> 姊妹篇：CenterPoseTrack </summary>
 
-- **OnePose++** Apoorva Beedu (佐治亚理工), OnePose++: Keypoint-Free One-Shot Object Pose
-Estimation without CAD Models. [[arxiv 2023](https://arxiv.org/pdf/2301.07673.pdf)]
+    [CenterPoseTrack](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9811720&casa_token=jl6si6ZQoFEAAAAA:bXXs-DU7uhCrkHNO_vAHUCePwNRSUJEFvZymA_6eO_jZdh6LTVx2n4Z0vUUIt4pnGTiEv4cAAk_q)：Keypoint-Based Category-Level Object Pose Tracking from an RGB Sequence with Uncertainty Estimation. (基于CenterPose网络，补充贝叶斯滤波和卡尔曼滤波，具体暂跳过)
+    </details>
 
 
 - **TexPose** Hanzhi Chen (TUM), TexPose: Neural Texture Learning for Self-Supervised 6D Object Pose Estimation. [[arxiv 2022](https://arxiv.org/pdf/2212.12902.pdf)]
@@ -97,6 +104,19 @@ Estimation without CAD Models. [[arxiv 2023](https://arxiv.org/pdf/2301.07673.pd
 - **MaskFusion** Martin Runz (伦敦学院大学), MaskFusion: Real-Time Recognition, Tracking and Reconstruction of Multiple Moving Objects. [[ISMAR 2018](https://arxiv.org/pdf/1804.09194)] [[page](http://visual.cs.ucl.ac.uk/pubs/maskfusion/)] [cite 207]
     
     物体级的语义动态SLAM-也许能用到它的物体3D重构。
+
+- **POMNet** Pose for Everything: Towards **C**ategory-**A**gnostic **P**ose **E**stimation. [[ECCV 2022]()] [[github](https://github.com/luminxu/Pose-for-Everything)] [cite ]
+
+    关键词：**小样本设置** (metric-learning based)；2D关键点检测; transformer-based.（注：标题中pose其实指关键点）
+
+    <details>
+    <summary> 相关评述 </summary>
+
+    1.对比：作者称最相关的是[StarMap (ECCV 2018)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Xingyi_Zhou_Category-Agnostic_Semantic_Keypoint_ECCV_2018_paper.pdf)，因为都是关注类别无关的关键点！只不过StarMap要用到3D CAD model并标注3D关键点，而本文是关注2D关键点。
+
+    2.概述StarMap：StarMap即单通道heatmap，可得所有关键点的2D像素坐标，同时预测DepthMap和CanViewFeature，分别得各像素对应的depth值，和canonical标准物体坐标系下的3D坐标；2D像素和标准3D坐标可以直接PnP，文中是2D像素+depth先恢复到cam下的3D坐标，再和标准3D坐标得物体6D pose！——> **自评**：其实这不就是CVPR19的NOCS了嚒！只不过StarMap是focus关键点，而NOCS是对物体所有可见像素，且NOCS的depth是传感器值而非预测值！
+
+    </details>
 
 
 - **--** [[CVPR ]()] [[github]()] [cite ]
@@ -360,10 +380,11 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 <details>
 <summary> <b> OnePose (CVPR 2022) - SFM重建 + 转为相机定位任务  </b> </summary>
 
-- OnePose：One-shot之意！因涉及重建，自然model-free，要现成的2D检测器提供bbox！
-- 思路：基于传统的定位pipeline来做物体pose任务，即“offline mapping + online localization”，mapping就是要先给定一段物体的video scan，利用SFM进行稀疏物体点云重建（物体点云看作不动的scene）；localization就是对于query img，通过特征匹配，获取相机的pose，注意这个pose是相机相对于scene的，这里也即相对于物体的，所以相机pose的逆，就是最终要求的物体的pose！关于特征匹配，传统是2D到2D，作者提出3D-2D，即先把ref video frame中的2D特征点的描述子，基于注意力聚合为对应的3D地图点的描述子，然后基于描述子，匹配3D地图点和query img中的2D特征点，有了匹配，就可以通过RANSAC PNP求解位姿！
-- 其他: 论文中是基于ARKit/ARCore工具标注出物体的bbox（相当于指定标准的物体坐标系）和每帧的相机位姿，拍摄ref video时假设物体竖直放置于平面，且保持静止，故bbox限于绕竖直的z轴旋转；OnePose的位姿估计模块仅处理关键帧，所以还有位姿tracking模块处理每一帧，这部分在补充材料中，暂略~
-- 缺点：如作者所言，依赖于局部特征匹配（特征如SIFT, SuperPoint，匹配器如最近邻，SuperGlue），匹配限于3D bbox内的重建点云，和query img上的2D bbox内的特征点，所以对于低纹理的物体可能失败，当训练和测试的seq差异太大时，也可能失败！
+- **OnePose**：One-shot之意！因涉及重建，自然model-free，要现成的2D检测器提供bbox！
+- **思路**：基于传统的定位pipeline来做物体pose任务，即“offline mapping + online localization”，mapping就是要先给定一段物体的video scan，利用SFM进行稀疏物体点云重建（物体点云看作不动的scene）；localization就是对于query img，通过特征匹配，获取相机的pose，注意这个pose是相机相对于scene的，这里也即相对于物体的，所以相机pose的逆，就是最终要求的物体的pose！关于特征匹配，传统是2D到2D，作者提出3D-2D，即先把ref video frame中的2D特征点的描述子，基于注意力聚合为对应的3D地图点的描述子，然后基于描述子，匹配3D地图点和query img中的2D特征点，有了匹配，就可以通过RANSAC PNP求解位姿！
+- **其他**: 论文中是基于ARKit/ARCore工具标注出物体的bbox（相当于指定标准的物体坐标系）和每帧的相机位姿，拍摄ref video时假设物体竖直放置于平面，且保持静止，故bbox限于绕竖直的z轴旋转；OnePose的位姿估计模块仅处理关键帧，所以还有位姿tracking模块处理每一帧，这部分在补充材料中，暂略~
+- **缺点**：如作者所言，依赖于局部特征匹配（特征如SIFT, SuperPoint，匹配器如最近邻，SuperGlue），匹配限于3D bbox内的重建点云，和query img上的2D bbox内的特征点，所以对于低纹理的物体可能失败，当训练和测试的seq差异太大时，也可能失败！
+- **扩展**: 作者自行扩展了OnePose++，丢掉了基于关键点+描述子的匹配策略！提升了处理低纹理物体的能力！具体内容暂略。
 
 - **摘要**：OnePose draws the idea from visual localization and only requires a simple RGB video scan of the object to build a sparse SfM model of the object. We propose a new graph attention network that directly matches 2D interest points in the query image with the 3D points in the SfM model, resulting in efficient and robust pose estimation. ...run in real-time. ... test on self-collected dataset that consists of 450 sequences of 150 objects.
 
@@ -520,6 +541,21 @@ bin-picking tasks.
 
 
 <details>
+<summary> <b> CenterPose (ICRA 2022)  </b> </summary>
+
+- **关键词**：CenterNet inspired; Keypoint-based; Category-level 6-DoF pose.
+- **摘要**：The proposed network performs 2D object detection, detects 2D keypoints, estimates 6-DoF pose, and regresses relative bounding cuboid dimensions. These quantities are estimated in a sequential fashion, leveraging the recent idea of convGRU for **propagating information from easier tasks to those that
+are more difficult**... on the challenging Objectron benchmark...
+
+- **网络结构**：输入RGB, 一个分支做检测，得到物体中心坐标和bbox；一个分支做关键点预测（基于2种方式），**关键点是3Dbbox的8个角点**；一个分支预测bbox的相对大小，这样可以得到标准物体坐标系下的3D关键点坐标 (up to scale)。于是有了2D关键点和3D关键点，就可以PnP得pose了。（细节存疑暂略：两种方式预测的2D关键点一起用于Levenberg-Marquardt version of PnP）
+    ![CenterPose_pipe](assets_pose/CenterPose_pipe.png)
+
+
+<summary>
+</details>
+
+
+<details>
 <summary> <b> ... ()  </b> </summary>
 
 - **摘要**：
@@ -583,3 +619,6 @@ achieve fast and precise 6D object pose and velocity tracking. ... test on newly
 
 <summary>
 </details>
+
+---
+补充：关于对预测结果添加置信度，可参考DenseFusion，GPV-Pose；关于不确定性建模，可参考suo-slam，CenterPoseTrack的Eq.(1)~(3)；
