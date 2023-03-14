@@ -43,13 +43,9 @@ modality RGB image to the network as well.
 
 - CenterNet, (2D目标检测), Xingyi Zhou (UT Austin), Tracking Objects as Points. [[arxiv 2019](https://arxiv.org/pdf/1904.07850.pdf)] [[github](https://github.com/xingyizhou/CenterNet)] [cite 1699] :star:
 
-- **TP-AE** Linfang Zheng (南方科大 & 英国伯明翰大学), TP-AE: Temporally Primed 6D Object Pose Tracking with Auto-Encoders. [[ICRA 2022](https://research.birmingham.ac.uk/files/164770788/_ICRA_TP_AE_6D_Object_Tracking.pdf)] [cite 0]
-
 
 - Unicorn, Bin Yan (), Towards Grand Unification of Object Tracking. [[ECCV 2022](https://arxiv.org/pdf/2207.07078)] [[github](https://github.com/MasterBin-IIAU/Unicorn)]
 
-
-- **ROFT** ROFT: Real-Time Optical Flow-Aided 6D Object Pose and Velocity Tracking. [[arxiv 2021]()] [[github]()] [cite ]
 
 - - - 
 
@@ -303,33 +299,6 @@ a 3D Kalman filter and the Hungarian algorithm is used for state estimation and 
 <summary>
 </details>
 
-
-
-<details>
-<summary> <b> TP-AE (ICRA 2022) 关注！ </b> </summary>
-
-- 解决遮挡下的对称/低纹理物体的位姿估计；号称优于CosyPose, PoseRBPF；
-- **摘要**：This paper focuses on the instance-level 6D pose tracking problem with a symmetric and textureless object under occlusion. The proposed TP-AE framework consists of a prediction step and a temporally primed pose estimation step. ... test on T-LESS dataset while running in real-time at 26 FPS.
-
-- **网络结构** (1) 在每个time step，先验位姿估计模块，将历史位姿估计序列输入GRU-based网络，生成当前帧的位姿先验；(2) 预测的位姿先验，和当前帧的RGB-D数据，一并输入pose-image融合模块，生成RGB-Cloud pair，接着送入3个分支，分别预测物体旋转、平移和可见部分。
-    ![TPAE_archi](assets_ch6/TPAE_archi.png)
-
-<summary>
-</details>
-
-
-
-<details>
-<summary> ROFT (arxiv 2021) </summary>
-
-- 摘要：We introduce ROFT, a Kalman filtering approach for 6D object pose and velocity tracking from a stream of RGB-D images. By leveraging real-time optical flow, ROFT synchronizes delayed outputs of low frame rate CNN (for instance segmentation and 6D pose estimation) with the RGB-D input stream to
-achieve fast and precise 6D object pose and velocity tracking. ... test on newly introduced Fast-YCB, and HO-3D.
-
-- 网络结构：暂跳过
-    ![ROFT_archi](assets_ch6/ROFT_archi.png)
-
-<summary>
-</details>
 
 ...
 

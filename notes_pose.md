@@ -67,6 +67,28 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 
 - **PPR-Net** Zhikai Dong (商汤&清华), PPR-Net:Point-wise Pose Regression Network for Instance Segmentation and 6D Pose Estimation in Bin-picking Scenarios. [[IROS 2019](https://ieeexplore.ieee.org/abstract/document/8967895/)] [[github](https://github.com/lvwj19/PPR-Net-plus)] [cite 26]
 
+- **OLD-Net** Zhaoxin Fan (人大), Object level depth reconstruction for category level 6d object pose estimation from monocular RGB image. [[ECCV 2022](https://arxiv.org/pdf/2204.01586.pdf)] [[github]()] [cite 6]
+
+    输入RGB，同时预测**物体级深度图**和NOCS表示，并将两者对齐(umeyama)得到物体Pose！具体做法暂略，另外一个可以用来预测深度的工具是：arxiv2022_GCVD_Globally Consistent Video Depth and Pose Estimation。
+
+- **NeRF-Pose** Fu Li (国防科大&TUM), Nerf-pose: A first-reconstruct-then-regress approach for weakly-supervised 6d object pose estimation. [[arxiv 2022](https://arxiv.org/pdf/2203.04802.pdf)] [cite 8]
+
+- **VideoPose** Apoorva Beedu (佐治亚理工), VideoPose: Estimating 6D object pose from videos. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
+
+
+- **CenterPose** Yunzhi Lin (佐治亚理工), Single-Stage Keypoint-Based Category-Level
+Object Pose Estimation from an RGB Image. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
+
+    (**tracking姊妹篇**: Keypoint-Based Category-Level Object Pose Tracking from an RGB
+Sequence with Uncertainty Estimation)
+
+- **OnePose++** Apoorva Beedu (佐治亚理工), OnePose++: Keypoint-Free One-Shot Object Pose
+Estimation without CAD Models. [[arxiv 2023](https://arxiv.org/pdf/2301.07673.pdf)]
+
+
+- **TexPose** Hanzhi Chen (TUM), TexPose: Neural Texture Learning for Self-Supervised 6D Object Pose Estimation. [[arxiv 2022](https://arxiv.org/pdf/2212.12902.pdf)]
+
+
 ## Others
 
 - **UniPose** Bruno Artacho (RIT), UniPose: Unified Human Pose Estimation in Single Images and Videos. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Artacho_UniPose_Unified_Human_Pose_Estimation_in_Single_Images_and_Videos_CVPR_2020_paper.pdf)] [cite 78]
@@ -79,6 +101,13 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 
 - **--** [[CVPR ]()] [[github]()] [cite ]
 
+
+## Pose Tracking
+
+- **TP-AE** Linfang Zheng (南方科大 & 英国伯明翰大学), TP-AE: Temporally Primed 6D Object Pose Tracking with Auto-Encoders. [[ICRA 2022](https://research.birmingham.ac.uk/files/164770788/_ICRA_TP_AE_6D_Object_Tracking.pdf)] [[github](https://github.com/Lynne-Zheng-Linfang/TP-AE_Object_tracking)] [cite ] 
+
+
+- **ROFT** ROFT: Real-Time Optical Flow-Aided 6D Object Pose and Velocity Tracking. [[arxiv 2021]()] [[github]()] [cite ]
 
 
 - - -
@@ -112,7 +141,7 @@ Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf
 3. 然后加了2个几何约束，一个约束思路和建模都比较直观，比如对于旋转分量，就是让回归分支预测的rx和ry，跟bbox投票分支得到的平面法向一致，对于平移分量，就是利用点法线公式，构建bbox平面到原点距离，跟bbox的size之间的关系！另一个约束的思路还算直观，但是建模太tricky，暂略；
 - 摘要：利用几何信息来增强类别级pose估计的特征学习，一者引入解耦的置信度驱动的旋转表达，二来提出几何引导的逐点投票进行3D bbox估计。最后，利用不同的输出流，加入几何一致性约束，可以进一步提升性能。GPV-Pose的推理速度能达到20FPS。
 
-- 网络结构：下面$r_x$和$r_y$是平面法向；预测的残差平移，通过加上输入点云的均值，得到最终的平移量；预测的残差size，通过加上预先计算的类均值size，得到最终的size；对称考虑镜像对称和旋转对称；对于逐点bbox投票，给每个点预测它到每个面的方向，距离和置信度，因此每个点要预测的维度就是$(3+1+1)\times 6 = 30$；置信度感知的损失函数（论文中Eq.(1)和Eq.(6)有点意思）；关于2个几何约束，暂略。
+- 网络结构：下面$r_x$和$r_y$是平面法向；预测的残差平移，通过加上输入点云的均值，得到最终的平移量；预测的残差size，通过加上预先计算的类均值size，得到最终的size；对称考虑镜像对称和旋转对称；对于逐点bbox投票，给每个点预测它到每个面的方向，距离和置信度，因此每个点要预测的维度就是$(3+1+1)\times 6 = 30$；置信度感知的损失函数（论文中Eq.(1)和Eq.(6)有点意思）。
     ![GPV_archi](assets_pose/GPV_archi.png)
 
 <summary>
@@ -142,17 +171,16 @@ the 3D object model and can generalize to unseen objects.
 
 
 <details>
-<summary> <b> OSOP (CVPR 2022) </b> </summary>
+<summary> <b> OSOP (CVPR 2022) </b> - 小样本 </summary>
 
-- 2D-2D匹配 + 2D-3D匹配（PnP with RANSAC）
-- 摘要：We present a novel one-shot method for object detection
-and 6 DoF pose estimation, that does not require training
-on target objects. At test time, it takes as input a target image and a textured 3D query model. The core idea is to represent a 3D model with a number of 2D templates rendered from different viewpoints. This enables CNN-based
-direct dense feature extraction and matching. The object is
+- 输入RGB + 3D CAD model；2D-2D匹配 + 2D-3D匹配（PnP with RANSAC）；
+- 摘要：We present a novel **one-shot** method for object detection and 6 DoF pose estimation, that does not require training on target objects. At test time, it **takes as input a target image and a textured 3D query model**. The core idea is to represent a 3D model with a number of 2D templates rendered from different viewpoints. This enables CNN-based direct dense feature extraction and matching. The object is
 first localized in 2D, then its approximate viewpoint is estimated, followed by dense 2D-3D correspondence prediction. The final pose is computed with PnP. We evaluate the method on LineMOD, Occlusion, Homebrewed, YCB-V and TLESS datasets.
 
 - 网络结构
     ![OSOP_pipe](assets_pose/OSOP_pipe.png)
+
+- 注：**Kabsch算法**：A solution for the best rotation to relate two sets of vectors（1976）；在"点云累积"论文ECCV2022_Dynamic 3D Scene Analysis by Point Cloud Accumulation的Eq.(3)中也用到了，看上去是带权的最小二乘问题。
 
 <summary>
 </details>
@@ -275,7 +303,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 
 <details>
-<summary> <b> CenterSnap (ICRA 2022) - center系单阶段！形状重建 + 9D pose </b> </summary>
+<summary> <b> CenterSnap (ICRA 2022) - center系单阶段！AE形状重建 </b> </summary>
 
 - 要解决：现有的基于“标准坐标回归”和“直接pose回归”方案，计算量大，并且在复杂的多目标场景中性能不好。Existing approaches mainly follow a complex multi-stage pipeline which first localizes and detects each object instance in the image and then regresses to either their 3D meshes or 6D poses. These approaches suffer from high-computational cost and low performance in complex multi-object scenarios, where occlusions can be present. 
 
@@ -286,7 +314,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 - 网络结构：
   1. 直接输入RGB-D图片，提取多尺度FPN特征。这里直接resnet处理depth图好像不太常见！
   2. FPN特征分别输入2个head网络，其中heatmap head用于定位物体的center，param head用于输出全部3D信息，包括shape的128维latent code，和13维的Pose信息（即9维R，3维t，1维s），至于3维的size，可以从latent code重建的标准化的物体点云的bbox获取到，再乘以scale缩放到原来尺寸！
-  3. shape的latent code的ground truth，是通过自编码器预先训练学习的！
+  3. shape的latent code的ground truth，是通过自编码器AE预先训练学习的！
     ![CenterSnap_archi](assets_pose/CenterSnap_archi.png)
 
 <summary>
@@ -403,9 +431,9 @@ for ground-truth NOCS map generation during training, and different networks nee
 - **摘要**：We present a network that reconstructs a latent 3D representation of an object using a small number of reference views at inference time. Our network is able to render the latent 3D representation from arbitrary views. Using this neural renderer, we directly optimize for pose given an input image. By training our network with a large number of 3D shapes for **reconstruction and rendering**, our network generalizes well to **unseen objects**. We present a new dataset for unseen object pose estimation–**MOPED**. ...test on MOPED as well as the ModelNet and LINEMOD datasets.
 
 - **重建+渲染用于位姿估计**
-    1. 重建：这里是指在latent space中的重建！给定一些reference RGB-D图片，利用modeler构建latent object，其实就是先用2D UNet提特征，然后lift到3D grid中，再3D UNet继续提特征，简单理解，正常3D空间中的一个点只有3维坐标信息，现在扩展成了C维的特征向量！每个视图view下都能构建一个latent object，它们分别处于各自的cam坐标系下，可以转到obj坐标系下，这样就能整合成唯一的latent object，这里可以通过channel-wise的均值池化，论文中是采用RNN的方式融合！
-    2. 渲染：简单把它看作上述重建的逆过程，也是通过3D/2D的UNet进行特征处理，最后输出depth和mask图；因为rgb图中的高频信息不太容易由NN去学习，所以论文采用了Image-based Rendering(IBR)技术，单独得到rgb图。简单来说，query的像素点，根据cam内参及query和ref的pose，可以找到各个ref图像上匹配像素，取这些匹配像素的rgb进行blend就得到了query的rgb值！
-    3. 位姿估计：利用重建网络的modeler处理ref图，获取latent object，然后用渲染网络，在给定的init_pose下，渲染得到对应的depth和mask图，基于若干loss进行梯度反传，直接优化pose参数！
+    1. **重建**：这里是指在latent space中的重建！给定一些reference RGB-D图片，利用modeler构建latent object，其实就是先用2D UNet提特征，然后lift到3D grid中，再3D UNet继续提特征，简单理解，正常3D空间中的一个点只有3维坐标信息，现在扩展成了C维的特征向量！每个视图view下都能构建一个latent object，它们分别处于各自的cam坐标系下，可以转到obj坐标系下，这样就能整合成唯一的latent object，这里可以通过channel-wise的均值池化，论文中是采用RNN的方式融合！
+    2. **渲染**：简单把它看作上述重建的逆过程，也是通过3D/2D的UNet进行特征处理，最后输出depth和mask图；因为rgb图中的高频信息不太容易由NN去学习，所以论文采用了**Image-based Rendering(IBR)**技术，单独得到rgb图。简单来说，query的像素点，根据cam内参及query和ref的pose，可以找到各个ref图像上匹配像素，取这些匹配像素的rgb进行blend就得到了query的rgb值！
+    3. **位姿估计**：利用重建网络的modeler处理ref图，获取latent object，然后用渲染网络，在给定的init_pose下，渲染得到对应的depth和mask图，基于若干loss进行梯度反传，直接优化pose参数！
     ![LatentFusion_archi](assets_pose/LatentFusion_archi.png)
 
 - **重建+渲染的网络结构**
@@ -462,6 +490,36 @@ bin-picking tasks.
 
 
 <details>
+<summary> <b> NeRF-Pose (arxiv 2022)  </b> </summary>
+
+- **核心**：NeRF隐式重建和体渲染 + 基于NOCS的2D-3D匹配 + PnP；
+
+- **摘要**：Precise annotation of 6D poses in real data is intricate, timeconsuming and not scalable, while synthetic data scales well but lacks realism. To avoid these problems, we present a weakly-supervised reconstruction-based pipeline, named NeRF-Pose, which needs only 2D object segmentation and known relative camera poses during training. Following the **first-reconstruct-then-regress** idea, we first reconstruct the objects from multiple views in the form of an implicit neural representation. Then, we train a pose regression network to predict pixel-wise 2D-3D correspondences between images and the reconstructed model...
+
+- **网络结构**： **第一阶段**：将nerf中的采样点，转到obj坐标系，得到obj坐标系下的3D隐式表达（OBJ-NeRF），它用来生成gt_NOCS_map，监督pose回归网络的nocs预测；**第二阶段**：三个步骤，先检测obj bbox；再pose reg得到nocs和mask预测；最后PnP;
+    ![NeRFPose_pipe](assets_pose/NeRFPose_pipe.png)
+
+
+<summary>
+</details>
+
+
+<details>
+<summary> <b> VideoPose (arxiv 2021) </b> - 时序特征融合 </summary> 
+
+- 输入是RGB video stream和3D CAD模型，核心想法是利用时序信息，手段是进行时序特征融合，整体创新性有限，论文细节不清(比如fig2的特征变换层)，暂略！
+- **摘要**： Our proposed network takes a pre-trained 2D object detector as input, and aggregates visual features through a recurrent neural network to make predictions at each frame...
+
+- **网络结构**
+    ![VideoPose_fig1](assets_pose/VideoPose_fig1.png)
+    ![VideoPose_fig2](assets_pose/VideoPose_fig2.png)
+
+
+<summary>
+</details>
+
+
+<details>
 <summary> <b> ... ()  </b> </summary>
 
 - **摘要**：
@@ -474,4 +532,54 @@ bin-picking tasks.
 </details>
 
 
+---
+## Pose Tracking
 
+
+<details>
+<summary> <b> TP-AE (ICRA 2022) - GRU轨迹先验 + AE形状重建！ </b> </summary>
+
+- Instance-level tracking; 考虑遮挡下的对称/低纹理物体的位姿估计；号称优于CosyPose, PoseRBPF；
+- **摘要**：This paper focuses on the instance-level 6D pose tracking problem with a symmetric and textureless object under occlusion. The proposed TP-AE framework consists of a prediction step and a temporally primed pose estimation step. ... test on T-LESS dataset while running in real-time at 26 FPS.
+
+- **网络结构**： 
+
+    (1) 在每个time step，先验位姿估计模块，将历史位姿估计序列输入GRU-based网络，生成当前帧的位姿先验；
+
+    (2) 预测的位姿先验，和当前帧的RGB-D数据，一并输入pose-image融合模块，生成RGB-Cloud pair，接着送入3个分支，分别预测物体旋转、平移和可见部分。
+
+    (3) 注意只有训练阶段需要encoder和decoder一起学习latent code，推理阶段，不再需要decoder，因为如下图，是直接基于latent code去预测R/t；
+
+    (4) 自：至少预测的平移量t的误差，来自2个方面，即GRU先验预测，和对$\Delta{T}$的预测。
+
+    ![TPAE_archi](assets_pose/TPAE_archi.png)
+    ![TPAE_fig4](assets_pose/TPAE_fig4.png)
+
+<summary>
+</details>
+
+
+<details>
+<summary> ROFT (arxiv 2021) </summary>
+
+- 摘要：We introduce ROFT, a Kalman filtering approach for 6D object pose and velocity tracking from a stream of RGB-D images. By leveraging real-time optical flow, ROFT synchronizes delayed outputs of low frame rate CNN (for instance segmentation and 6D pose estimation) with the RGB-D input stream to
+achieve fast and precise 6D object pose and velocity tracking. ... test on newly introduced Fast-YCB, and HO-3D.
+
+- 网络结构：暂跳过
+    ![ROFT_archi](assets_pose/ROFT_archi.png)
+
+<summary>
+</details>
+
+
+<details>
+<summary> <b> ... ()  </b> </summary>
+
+- **摘要**：
+
+- **网络结构**
+    ![](assets_pose/.png)
+
+
+<summary>
+</details>
