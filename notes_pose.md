@@ -114,7 +114,7 @@ Object Pose Estimation from an RGB Image. [[arxiv 2021](https://arxiv.org/abs/21
 
     1.对比：作者称最相关的是[StarMap (ECCV 2018)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Xingyi_Zhou_Category-Agnostic_Semantic_Keypoint_ECCV_2018_paper.pdf)，因为都是关注类别无关的关键点！只不过StarMap要用到3D CAD model并标注3D关键点，而本文是关注2D关键点。
 
-    2.概述StarMap：StarMap即单通道heatmap，可得所有关键点的2D像素坐标，同时预测DepthMap和CanViewFeature，分别得各像素对应的depth值，和canonical标准物体坐标系下的3D坐标；2D像素和标准3D坐标可以直接PnP，文中是2D像素+depth先恢复到cam下的3D坐标，再和标准3D坐标得物体6D pose！——> **自评**：其实这不就是CVPR19的NOCS了嚒！只不过StarMap是focus关键点，而NOCS是对物体所有可见像素，且NOCS的depth是传感器值而非预测值！
+    2.概述StarMap：StarMap即单通道heatmap，可得所有关键点的2D像素坐标，同时预测DepthMap和CanViewFeature，分别得各像素对应的depth值，和canonical标准物体坐标系下的3D坐标；2D像素和标准3D坐标可以直接PnP，文中是2D像素+depth先恢复到cam下的3D坐标，再和标准3D坐标得物体6D pose！——> **自评**：其实这不就是CVPR'19_**NOCS**了嚒！只不过StarMap是focus关键点，而NOCS是对物体所有可见像素，且NOCS的depth是传感器值而非预测值！另外，ICCV'19_**Pix2Pose**也是预测像素的标注3D坐标，与NOCS如出一辙，只不过它暂只关注了instance-level！
 
     </details>
 
