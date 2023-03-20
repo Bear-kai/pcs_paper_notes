@@ -126,12 +126,12 @@ Object Pose Estimation from an RGB Image. [[arxiv 2021](https://arxiv.org/abs/21
 - **TP-AE** Linfang Zheng (南方科大 & 英国伯明翰大学), TP-AE: Temporally Primed 6D Object Pose Tracking with Auto-Encoders. [[ICRA 2022](https://research.birmingham.ac.uk/files/164770788/_ICRA_TP_AE_6D_Object_Tracking.pdf)] [[github](https://github.com/Lynne-Zheng-Linfang/TP-AE_Object_tracking)] [cite ] 
 
 
-- **ROFT** ROFT: Real-Time Optical Flow-Aided 6D Object Pose and Velocity Tracking. [[arxiv 2021]()] [[github]()] [cite 6]
+- **ROFT** ROFT: Real-Time Optical Flow-Aided 6D Object Pose and Velocity Tracking. [[arxiv 2021]()] [[github]()] [cite ]
 
 
 ## Object-level SLAM
 
-- **suo-slam** Nathaniel Merrill (特拉华大学&TUM), **S**ymmetry and **U**ncertainty-Aware **O**bject **SLAM** for 6DoF Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Merrill_Symmetry_and_Uncertainty-Aware_Object_SLAM_for_6DoF_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [[github](https://github.com/rpng/suo_slam)] [cite ]
+- **suo-slam** Nathaniel Merrill (特拉华大学&TUM), **S**ymmetry and **U**ncertainty-Aware **O**bject **SLAM** for 6DoF Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Merrill_Symmetry_and_Uncertainty-Aware_Object_SLAM_for_6DoF_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [[github](https://github.com/rpng/suo_slam)] [cite 6]
 
 
 - - -
