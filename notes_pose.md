@@ -640,7 +640,9 @@ achieve fast and precise 6D object pose and velocity tracking. ... test on newly
     - **符号约定**：本文中，将第一帧设定为world或称global坐标系(记为G)，obj_pose是T_O2G，cam_pose是T_G2C；
     - **估计obj_pose的方式**：基于bbox，将输入图片ROI_align到固定尺寸，和prior tensor(无prior时是0填充)堆叠，输入关键点网络，预测物体的2D关键点，然后结合3D model上标注的3D关键点，就可以PnP计算该obj相对cam的pose，T_O2C；对于第一帧的物体，T_O2C也是T_O2G；
     - **估计cam_pose的方式**：(1) 根据保存的前序帧估计的物体pose(T_O2G)，和当前帧基于PnP的物体pose(T_O2C)，基于RANSAC得当前帧cam_pose: T_G2C = T_O2C @ inv(T_O2G)；其中，RANSAC中要check的hypoth，看作是根据不同物体的"O"获得的T_G2C；(2) 如果估计失败，就构造物体的3D bbox(对应T_O2G的平移量)和2D bbox的center的匹配，然后PnP得cam_pose；（3）如果还失败，就用恒速模型！
-    - **图优化**：构造object slam问题，传统slam中图优化的顶点包括cam位姿，和map_point的3D位置，这里的顶点包括cam位姿，和obj位姿！局部优化时，只优化当前帧的cam位姿，全局优化时，则连同obj位姿一起优化！所以edge对应有一元边和二元边两种情形，3D关键点作为edge的参数传入，2D关键点作为edge的观测量！主观上，物体级slam中的obj位姿顶点，好比是传统slam中若干相对固定的map_point的集合！
+    - **图优化**：(1) 构造object slam问题，传统slam中图优化的顶点包括cam位姿，和map_point的3D位置，这里的顶点包括cam位姿，和obj位姿！(2) 局部优化时，只优化当前帧的cam位姿；全局优化时，则连同obj位姿一起优化，所以edge对应有一元边和二元边两种情形！(3) 各3D关键点作为edge的参数传入，经过T_O2G和T_G2C和内参K转化为预测的图像坐标uv，对应的检测到的2D关键点作为edge的观测量obs，两者之差即为重投影误差error！(4) 主观上，物体级slam中的obj位姿顶点，好比是传统slam中若干相对固定的map_point的集合！因为对于某个物体，假设它有10个关键点被检测到，则该物体可以构造出10条二元边edge，每条edge一头连着cam位姿，一头连着obj位姿，可以发现这10条edge连接的顶点是共享的，只是传入的3D关键点参数和设置的观测值不同而已！所以，这10个关键点可以看作是传统slam中，位置相对固定的点集，优化时不能各自自由调整位置，而是始终约束具有固定的相对位置！
+    - **图优化代码说明**：作者在g2o代码库中，新增了object_slam类型，定义了2种edge，实现上述(3)中的功能：
+    `edge = g2o.EdgeSE3ProjectFromFixedObject(cam_k, model_pts[k], object_verts[obj_id])`, 和`edge = g2o.EdgeSE3ProjectFromObject(cam_k, model_pts[k])`；前者是一元边，用于局部优化当前帧，后者是二元边，用于全局优化！可见，相机内参和3D关键点是作为参数传入，对于一元边，物体位姿T_O2G也是作为参数传入，然后检测的2D关键点坐标充当edge的观测量：`edge.set_measurement(uv[k])`。另外，整个代码实现，加入了很多robust操作：比如check pose的有效性(不能让投影后的深度为"负"值)，比如根据edge.chi2()，将各关键点设置为inlier/outlier，从而动态调整参与图优化的edge集合！
     ![suo-slam_pipe](assets_pose/suo-slam_pipe.png)
 
 
