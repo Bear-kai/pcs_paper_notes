@@ -631,7 +631,8 @@ achieve fast and precise 6D object pose and velocity tracking. ... test on newly
 <details>
 <summary> <b> suo-slam (CVPR 2022) - 关键点+g2o图优化   </b> </summary>
 
-- **关键词**：依赖3D CAD模型; RGB输入; 2D heatmap关键点; 3D 人工标注keypoints；图优化：同时优化相机和物体的pose。（隐含假设：静态场景！即物体不动~）
+- **关键词**：依赖3D CAD模型；RGB输入；2D热力图关键点；3D人工标注关键点；同时优化相机和物体的pose。
+- **隐含假设**：(1) 静态场景，即物体不动; (2) 场景中不含多实例，代码中是直接根据物体id进行前后帧的物体关联！
 - **摘要**：We propose a **keypoint-based object-level SLAM** framework that can provide globally consistent 6DoF pose estimates for symmetric and asymmetric objects alike. To the best of our knowledge, our system is among **the first to utilize the camera pose information from SLAM to provide prior knowledge for tracking keypoints** on symmetric objects – ensuring that new measurements are consistent with the current 3D scene. Moreover, our semantic keypoint network is trained to predict the Gaussian covariance for the keypoints that captures the true error of the prediction, and thus is not only useful as a weight for the residuals in the system’s optimization problems, but also as a means to detect harmful statistical outliers without choosing a manual threshold...at a real-time speed...
 
 - **算法框架**
