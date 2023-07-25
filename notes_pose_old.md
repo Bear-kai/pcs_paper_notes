@@ -663,7 +663,7 @@ prior itself is not the credit to the high performance. The keypoint actually is
 
 
 <details>
-<summary> <b> StablePose 几何稳定性分析 </b> </summary>
+<summary> <b> StablePose (CVPR 2021) 几何稳定性分析 </b> </summary>
 
 - **摘要**：We introduce the concept of geometric stability to the problem of 6D object pose estimation and propose to learn pose inference based on geometrically stable patches extracted from observed 3D point clouds. According to the
 theory of geometric stability analysis, a minimal set of three planar/cylindrical patches are geometrically stable and determine the full 6DoFs of the object pose...It also performs well in category-level pose estimation.

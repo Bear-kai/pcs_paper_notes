@@ -616,7 +616,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 - 第二阶段计算相机delta pose的图示
     ![CosyPose_Fig5](assets_pose/CosyPose_Fig5.png)
-    
+
 </details>
 
 
@@ -729,7 +729,7 @@ prior itself is not the credit to the high performance. The keypoint actually is
 
 
 <details>
-<summary> <b> StablePose 几何稳定性分析 </b> </summary>
+<summary> <b> StablePose (CVPR 2021) 几何稳定性分析 </b> </summary>
 
 - **摘要**：We introduce the concept of geometric stability to the problem of 6D object pose estimation and propose to learn pose inference based on geometrically stable patches extracted from observed 3D point clouds. According to the
 theory of geometric stability analysis, a minimal set of three planar/cylindrical patches are geometrically stable and determine the full 6DoFs of the object pose...It also performs well in category-level pose estimation.
@@ -1086,6 +1086,28 @@ thus the probabilities in the predicted MSRA implicitly represent the symmetry o
 6. **Limitations**: 1) The most common failure mode is due to inaccurate initial pose estimates from the coarse model. 2) Another limitation is the runtime of our coarse model. We use M = 520 pose hypotheses per object which takes around 2.5 seconds to be rendered and evaluated by our coarse model. In a tracking scenario however, the coarse model is run just once at the initial frame and the object can be tracked using the refiner which runs at 20Hz.
     ![MegaPose_archi](assets_pose/MegaPose_archi.png)
     ![MegaPose_result](assets_pose/MegaPose_result.png)
+
+</details>
+
+
+<details>
+<summary> <b> suo-slam (CVPR 2022) 关键点+g2o图优化   </b> </summary>
+
+- **关键词**：依赖3D CAD模型；RGB输入；2D热力图关键点；3D人工标注关键点；同时优化相机和物体的pose。
+- **隐含假设**：(1) 静态场景，即物体不动; (2) 场景中不含多实例，代码中是直接根据物体id进行前后帧的物体关联！
+- **摘要**：We propose a **keypoint-based object-level SLAM** framework that can provide globally consistent 6DoF pose estimates for symmetric and asymmetric objects alike. To the best of our knowledge, our system is among **the first to utilize the camera pose information from SLAM to provide prior knowledge for tracking keypoints** on symmetric objects – ensuring that new measurements are consistent with the current 3D scene. Moreover, our semantic keypoint network is trained to predict the Gaussian covariance for the keypoints that captures the true error of the prediction, and thus is not only useful as a weight for the residuals in the system’s optimization problems, but also as a means to detect harmful statistical outliers without choosing a manual threshold...at a real-time speed...
+
+- **算法框架**
+
+    - **整体流程**：输入一帧RGB图片，分两路处理包含的物体：即先处理非对称物体，再处理对称物体，这么做的原因是，为了基于非对称物体估计当前帧的cam_pose，从而为后续处理对称物体时，构造prior。前端tracking看作是获取当前帧的cam_pose，后端优化看作是对obj_pose和cam_pose进行同步优化！
+    - **符号约定**：本文中，将第一帧设定为world或称global坐标系(记为G)，obj_pose是T_O2G，cam_pose是T_G2C；
+    - **估计obj_pose的方式**：基于bbox，将输入图片ROI_align到固定尺寸，和prior tensor(无prior时是0填充)堆叠，输入关键点网络，预测物体的2D关键点，然后结合3D model上标注的3D关键点，就可以PnP计算该obj相对cam的pose，T_O2C；对于第一帧的物体，T_O2C也是T_O2G。注意，场景中的物体pose会被维护记录下来，代码中是存于字典`self.obj_poses`中，对于第一次检测到的物体，若它被成功初始化，即估计出了T_O2G，则该pose会立马存入字典；对于在前序帧已经被初始化的物体，即字典中已有该物体的pose值，只有在当前帧估计的pose，比字典中存储的更准确时才会更新（比如取最近15帧统计重投影时的内点数来确定），对应代码中的re-init步骤！
+    - **估计cam_pose的方式**：(1) 根据保存的前序帧估计的物体pose(T_O2G)，和当前帧基于PnP的物体pose(T_O2C)，基于RANSAC得当前帧cam_pose: T_G2C = T_O2C @ inv(T_O2G)；其中，RANSAC中要check的hypoth，看作是根据不同物体的"O"获得的T_G2C；(2) 如果估计失败，就构造物体的3D bbox(对应T_O2G的平移量)和2D bbox的center的匹配，然后PnP得cam_pose；（3）如果还失败，就用恒速模型！
+    - **图优化**：(1) 构造object slam问题，传统slam中图优化的顶点包括cam位姿，和map_point的3D位置，这里的顶点包括cam位姿，和obj位姿！(2) 局部优化时，只优化当前帧的cam位姿；全局优化时，则连同obj位姿一起优化，所以edge对应有一元边和二元边两种情形！(3) 各3D关键点作为edge的参数传入，经过T_O2G和T_G2C和内参K转化为预测的图像坐标uv，对应的检测到的2D关键点作为edge的观测量obs，两者之差即为重投影误差error！(4) 主观上，物体级slam中的obj位姿顶点，好比是传统slam中若干相对固定的map_point的集合！因为对于某个物体，假设它有10个关键点被检测到，则该物体可以构造出10条二元边edge，每条edge一头连着cam位姿，一头连着obj位姿，可以发现这10条edge连接的顶点是共享的，只是传入的3D关键点参数和设置的观测值不同而已！所以，这10个关键点可以看作是传统slam中，位置相对固定的点集，优化时不能各自自由调整位置，而是始终约束具有固定的相对位置！
+    - **图优化代码说明**：作者在g2o代码库中，新增了object_slam类型，定义了2种edge，实现上述(3)中的功能：
+    `edge = g2o.EdgeSE3ProjectFromFixedObject(cam_k, model_pts[k], object_verts[obj_id])`, 和`edge = g2o.EdgeSE3ProjectFromObject(cam_k, model_pts[k])`；前者是一元边，用于局部优化当前帧，后者是二元边，用于全局优化！可见，相机内参和3D关键点是作为参数传入，对于一元边，物体位姿T_O2G也是作为参数传入，然后检测的2D关键点坐标充当edge的观测量：`edge.set_measurement(uv[k])`。另外，整个代码实现，加入了很多robust操作：比如check pose的有效性(不能让投影后的深度为"负"值)，比如根据edge.chi2()，将各关键点设置为inlier/outlier，从而动态调整参与图优化的edge集合！
+    - **其它**：关于对预测结果添加置信度，可参考DenseFusion，GPV-Pose；关于不确定性建模，可参考suo-slam，CenterPoseTrack的Eq.(1)~(3)。
+    ![suo-slam_pipe](assets_pose/suo-slam_pipe.png)
 
 </details>
 
