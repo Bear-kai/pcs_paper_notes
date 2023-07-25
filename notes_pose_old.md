@@ -1,153 +1,107 @@
 # Object Pose Estimation
 
-## Instance Level
-
-### Year 2023
-
-- **MV-Keypoints** Alan Li (University of Toronto), Multi-View Keypoints for Reliable 6D Object Pose Estimation. [[ICRA 2023]](https://arxiv.org/pdf/2303.16833.pdf)
-    - 基于PVNet的多视图关键点_细节不清_测ROBI数据集
-    - 相关 **MV6D** Fabian Duffhauss (Bosch), MV6D: Multi-View 6D Pose Estimation on RGB-D Frames
-Using a Deep Point-wise Voting Network. [[IROS 2022]](https://arxiv.org/pdf/2208.01172.pdf)[cite 2]
-
-
-- **CheckerPose** Ruyi Lian (美国石溪大学), CheckerPose: Progressive Dense Keypoint Localization for Object Pose Estimation with Graph Neural Network. [[arxiv 2023]](https://arxiv.org/abs/2303.16874)
-
-
-- **TexPose** Hanzhi Chen, Fabian Manhardt (TUM), TexPose: Neural Texture Learning for Self-Supervised 6D Object Pose Estimation. [[CVPR 2023](https://arxiv.org/pdf/2212.12902.pdf)]
-
-
-- **---** xxx (), xxx [[]]()
-
-
-### Year 2022
-
-- **`suo-slam`** Nathaniel Merrill (特拉华大学&TUM), **S**ymmetry and **U**ncertainty-Aware **O**bject **SLAM** for 6DoF Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Merrill_Symmetry_and_Uncertainty-Aware_Object_SLAM_for_6DoF_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [[github](https://github.com/rpng/suo_slam)] [cite 6]
-
+## instance level
 
 - **RNNPose** Yan Xu (CUHK), RNNPose: Recurrent 6-DoF Object Pose Refinement with Robust Correspondence Field Estimation and Pose Optimization. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_RNNPose_Recurrent_6-DoF_Object_Pose_Refinement_With_Robust_Correspondence_Field_CVPR_2022_paper.pdf)] [[github](https://github.com/DecaYale/RNNPose)] [cite 2]
-
 
 - **OSOP** Ivan Shugurov (慕尼黑工大), OSOP: A Multi-Stage One Shot Object Pose Estimation Framework [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Shugurov_OSOP_A_Multi-Stage_One_Shot_Object_Pose_Estimation_Framework_CVPR_2022_paper.pdf)] 
 
 
 - **ZebraPose** Yongzhi Su (DFKI), ZebraPose: Coarse to Fine Surface Encoding for 6DoF Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Su_ZebraPose_Coarse_To_Fine_Surface_Encoding_for_6DoF_Object_Pose_CVPR_2022_paper.pdf)] [[github]( https://github.com/suyz526/ZebraPose)] [cite 1]
 
-
 - **SurfEmb** SurfEmb: Dense and Continuous Correspondence Distributions
 for Object Pose Estimation with Learnt Surface Embeddings. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Haugaard_SurfEmb_Dense_and_Continuous_Correspondence_Distributions_for_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [[github](https://surfemb.github.io/)] [cite 3]
-    - 相关 **EPOS**： Tomas Hodan (捷克理工), EPOS: Estimating 6D Pose of Objects with Symmetries. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/Hodan_EPOS_Estimating_6D_Pose_of_Objects_With_Symmetries_CVPR_2020_paper.pdf)[[page]](http://cmp.felk.cvut.cz/epos/)[cite 174]
+
+- **EPOS** Tomas Hodan (捷克理工), EPOS: Estimating 6D Pose of Objects with Symmetries. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/Hodan_EPOS_Estimating_6D_Pose_of_Objects_With_Symmetries_CVPR_2020_paper.pdf)[[page]](http://cmp.felk.cvut.cz/epos/)[cite 174]
+
+
+- **KDFNet** Xingyu Liu (CMU), KDFNet: Learning Keypoint Distance Field for 6D Object Pose Estimation. [[IROS 2021](https://arxiv.org/pdf/2109.10127)] [cite 1]
 
 
 - **RCV-Pose** Yangzheng Wu (Queen’s University), Vote from the Center: 6 DoF Pose Estimation in RGB-D Images by Radial Keypoint Voting. [[ECCV 2022](https://arxiv.org/pdf/2104.02527.pdf)] [cite 6]
     - 关键点投票，可看作是KDFNet的3D版本。
-    - **KDFNet** Xingyu Liu (CMU), KDFNet: Learning Keypoint Distance Field for 6D Object Pose Estimation. [[IROS 2021](https://arxiv.org/pdf/2109.10127)] [cite 1]
-
 
 - **YOLOPose** YOLOPose: Transformer-based Multi-Object 6D Pose Estimation using Keypoint Regression. [[arxiv 2022](https://arxiv.org/pdf/2205.02536)]
 
+
+- **`TemporalFusion`** Fengjun Mu (中科大), TemporalFusion: Temporal Motion Reasoning with Multi-Frame Fusion for 6D Object Pose Estimation. [[IROS 2021](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9636583)] [[github](https://github.com/mufengjun260/TemporalFusion21)] [cite 0]
+
+- **`TemporalFusion扩展`** Rui Huang (中科大), Estimating 6D Object Poses with Temporal Motion Reasoning for Robot Grasping in Cluttered Scenes. [[RAL 2022](https://ieeexplore.ieee.org/abstract/document/9699040/)] [[github](https://github.com/mufengjun260/H-MPose)] [cite 0]
+
+
+- **Morefusion** Kentaro Wada (帝国理工), Morefusion: Multi-object reasoning for 6d pose estimation from volumetric fusion, [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wada_MoreFusion_Multi-object_Reasoning_for_6D_Pose_Estimation_from_Volumetric_Fusion_CVPR_2020_paper.pdf)] [cite 48]
+
+
+- **Cosypose** Cosypose: Consistent multi-view multi-object 6d pose estimation. [[ECCV 2020](https://arxiv.org/pdf/2008.08465)] [[page](https://www.di.ens.fr/willow/research/cosypose/)] [cite 133]
+
+- TCLCH, Real-Time Monocular Pose Estimation of 3D Objects using
+Temporally Consistent Local Color Histograms. [[ICCV 2017](https://openaccess.thecvf.com/content_ICCV_2017/papers/Tjaden_Real-Time_Monocular_Pose_ICCV_2017_paper.pdf)] [cite 90]
+（RBOT的三篇论文之一）
+
+
+- **PPR-Net** Zhikai Dong (商汤&清华), PPR-Net:Point-wise Pose Regression Network for Instance Segmentation and 6D Pose Estimation in Bin-picking Scenarios. [[IROS 2019](https://ieeexplore.ieee.org/abstract/document/8967895/)] [[github](https://github.com/lvwj19/PPR-Net-plus)] [cite 26]
+
+- **VideoPose** Apoorva Beedu (佐治亚理工), VideoPose: Estimating 6D object pose from videos. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
 
 - **OVE6D** Dingding Cai (Tampere University), OVE6D: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation. [[CVPR 2022]](https://openaccess.thecvf.com/content/CVPR2022/papers/Cai_OVE6D_Object_Viewpoint_Encoding_for_Depth-Based_6D_Object_Pose_Estimation_CVPR_2022_paper.pdf)[[github]](https://github.com/dingdingcai/OVE6D-pose)[cite 9]
 
 - **SC6D** Dingding Cai (Tampere University), SC6D: Symmetry-agnostic and Correspondence-free
 6D Object Pose Estimation. [[3DV 2022](https://arxiv.org/pdf/2208.02129.pdf)]
 
+- **MV-Keypoints** Alan Li (University of Toronto), Multi-View Keypoints for Reliable 6D Object Pose Estimation. [[ICRA 2023]](https://arxiv.org/pdf/2303.16833.pdf)（基于PVNet的多视图关键点_细节不清_测ROBI数据集）
 
-- **ROPE** Bo Chen (University of Adelaide), Occlusion-Robust Object Pose Estimation with Holistic Representation. [[WACV 2022]](https://openaccess.thecvf.com/content/WACV2022/papers/Chen_Occlusion-Robust_Object_Pose_Estimation_With_Holistic_Representation_WACV_2022_paper.pdf)[[github]](http://github.com/BoChenYS/ROPE)[cite 7]
-
-
-- **MegaPose** Yann Labbe (Inria), Lucas Manuelli (Nvidia), MegaPose: 6D Pose Estimation of Novel Objects via Render & Compare. [[arxiv 2022]](https://arxiv.org/pdf/2212.06870.pdf)[[github]](https://megapose6d.github.io/)[cite 11]
-
-
-### Year 2021 and before
-
-
-- **`TemporalFusion`** Fengjun Mu (中科大), TemporalFusion: Temporal Motion Reasoning with Multi-Frame Fusion for 6D Object Pose Estimation. [[IROS 2021](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9636583)] [[github](https://github.com/mufengjun260/TemporalFusion21)] [cite 0]
-    - **扩展版**: Rui Huang (中科大), Estimating 6D Object Poses with Temporal Motion Reasoning for Robot Grasping in Cluttered Scenes. [[RAL 2022](https://ieeexplore.ieee.org/abstract/document/9699040/)] [[github](https://github.com/mufengjun260/H-MPose)] [cite 0]
-
-
-- **VideoPose** Apoorva Beedu (佐治亚理工), VideoPose: Estimating 6D object pose from videos. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
-
+- **MV6D** Fabian Duffhauss (Bosch), MV6D: Multi-View 6D Pose Estimation on RGB-D Frames
+Using a Deep Point-wise Voting Network. [[IROS 2022]](https://arxiv.org/pdf/2208.01172.pdf)[cite 2]
 
 - **SO-Pose** Yan Di (TUM), Fabian Manhardt2 (Google), Gu Wang, Xiangyang Ji (Tsinghua), SO-Pose: Exploiting Self-Occlusion for Direct 6D Pose Estimation. [[ICCV 2021]]()[cite 54]
 
 - **InstancePose** Lee Aing (台湾中正大学), InstancePose: Fast 6DoF Pose Estimation for Multiple Objects from a Single RGB Image. [[ICCV-W 2021]](https://openaccess.thecvf.com/content/ICCV2021W/CVinHRC/papers/Aing_InstancePose_Fast_6DoF_Pose_Estimation_for_Multiple_Objects_From_a_ICCVW_2021_paper.pdf)[cite 3]
 
+- **ROPE** Bo Chen (University of Adelaide), Occlusion-Robust Object Pose Estimation with Holistic Representation. [[WACV 2022]](https://openaccess.thecvf.com/content/WACV2022/papers/Chen_Occlusion-Robust_Object_Pose_Estimation_With_Holistic_Representation_WACV_2022_paper.pdf)[[github]](http://github.com/BoChenYS/ROPE)[cite 7]
+
+- **CheckerPose** Ruyi Lian (美国石溪大学), CheckerPose: Progressive Dense Keypoint Localization for Object Pose Estimation with Graph Neural Network. [[arxiv 2023]](https://arxiv.org/abs/2303.16874)
+
+- **TexPose** Hanzhi Chen, Fabian Manhardt (TUM), TexPose: Neural Texture Learning for Self-Supervised 6D Object Pose Estimation. [[CVPR 2023](https://arxiv.org/pdf/2212.12902.pdf)]
 
 - **GDR-Net** Gu Wang (Tsinghua), Fabian Manhardt (TUM), GDR-Net: Geometry-Guided Direct Regression Network for Monocular 6D Object Pose Estimation. [[CVPR 2021]](https://openaccess.thecvf.com/content/CVPR2021/papers/Wang_GDR-Net_Geometry-Guided_Direct_Regression_Network_for_Monocular_6D_Object_Pose_CVPR_2021_paper.pdf)[cite 160]
 
-
-- **Morefusion** Kentaro Wada (帝国理工), Morefusion: Multi-object reasoning for 6d pose estimation from volumetric fusion, [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wada_MoreFusion_Multi-object_Reasoning_for_6D_Pose_Estimation_from_Volumetric_Fusion_CVPR_2020_paper.pdf)] [cite 48]
-
-
-- **PVN3D** Yisheng He (港科大), Wei Sun (旷视) Haibin Huang (快手), PVN3D: A Deep Point-wise 3D Keypoints Voting Network for 6DoF Pose
-Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/He_PVN3D_A_Deep_Point-Wise_3D_Keypoints_Voting_Network_for_6DoF_CVPR_2020_paper.pdf)[[github]](https://github.com/ethnhe/PVN3D.git)[cite 317]
-
-
-- **G2L-Net** Wei Chen (国防科大&伯明翰), G2L-Net: Global to Local Network for Real-time 6D Pose Estimation with Embedding Vector Features. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/Chen_G2L-Net_Global_to_Local_Network_for_Real-Time_6D_Pose_Estimation_CVPR_2020_paper.pdf)[[github]](https://github.com/DC1991/G2L_Net)[cite 63]
-
-- **PointPoseNet** Wei Chen (国防科大&伯明翰), PointPoseNet: Point Pose Network for Robust 6D Object Pose Estimation. [[WACV 2020]](https://openaccess.thecvf.com/content_WACV_2020/papers/Chen_PonitPoseNet_Point_Pose_Network_for_Robust_6D_Object_Pose_Estimation_WACV_2020_paper.pdf)[cite 27]
-
-
-- **Cosypose** Cosypose: Consistent multi-view multi-object 6d pose estimation. [[ECCV 2020](https://arxiv.org/pdf/2008.08465)] [[page](https://www.di.ens.fr/willow/research/cosypose/)] [cite 133]
-
-
-- **Self6D** Gu Wang (Tsinghua), Fabian Manhardt (TUM), Self6D: Self-Supervised Monocular 6D Object Pose Estimation. [[ECCV 2020]](https://arxiv.org/pdf/2004.06468.pdf)[cite 97]
-    - 扩展篇Self6D++：Occlusion-Aware Self-Supervised Monocular 6D Object Pose Estimation. [[TPAMI 2021]](https://arxiv.org/pdf/2203.10339.pdf)[cite 15]
-
-
-- **PPR-Net** Zhikai Dong (商汤&清华), PPR-Net:Point-wise Pose Regression Network for Instance Segmentation and 6D Pose Estimation in Bin-picking Scenarios. [[IROS 2019](https://ieeexplore.ieee.org/abstract/document/8967895/)] [[github](https://github.com/lvwj19/PPR-Net-plus)] [cite 26]
-
-
-- **PVNet** Sida Peng, Xiaowei Zhou (浙大CAD), PVNet: Pixel-wise Voting Network for 6DoF Pose Estimation. [[CVPR 2019]](https://openaccess.thecvf.com/content_CVPR_2019/papers/Peng_PVNet_Pixel-Wise_Voting_Network_for_6DoF_Pose_Estimation_CVPR_2019_paper.pdf)[[github]](https://zju3dv.github.io/pvnet/)[cite 782]
+- **MegaPose** Yann Labbe (Inria), Lucas Manuelli (Nvidia), MegaPose: 6D Pose Estimation of Novel Objects via Render & Compare. [[arxiv 2022]](https://arxiv.org/pdf/2212.06870.pdf)[[github]](https://megapose6d.github.io/)[cite 11]
 
 
 - **DPOD** Sergey Zakharov (TUM), DPOD: 6D Pose Object Detector and Refiner. [[ICCV 2019]](https://openaccess.thecvf.com/content_ICCV_2019/papers/Zakharov_DPOD_6D_Pose_Object_Detector_and_Refiner_ICCV_2019_paper.pdf)[cite 346]
     - 扩展篇: Ivan Shugurov, Sergey Zakharov (TUM), DPODv2: Dense Correspondence-Based 6 DoF Pose Estimation.[[TPAMI 2021]](https://arxiv.org/pdf/2207.02805.pdf)[cite 17]
 
-
-- **CDPN** Zhigang Li, Gu Wang, Xiangyang Ji (Tsinghua), CDPN: Coordinates-Based Disentangled Pose Network for Real-Time RGB-Based 6-DoF Object Pose Estimation. [[ICCV 2019]](https://openaccess.thecvf.com/content_ICCV_2019/papers/Li_CDPN_Coordinates-Based_Disentangled_Pose_Network_for_Real-Time_RGB-Based_6-DoF_Object_ICCV_2019_paper.pdf)[cite 292]
-
-
-- **PoseCNN** Yu Xiang (University of Washington), Tanner Schmidt (Nvidia), PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes [[RSS 2018]](https://arxiv.org/pdf/1711.00199.pdf)[[page]](https://rse-lab.cs.washington.edu/projects/posecnn/)[cite 1559]
-
-
 - **AAE** Martin Sundermeyer (German Aerospace Center), Implicit 3D Orientation Learning for 6D Object Detection from RGB Images. [[ECCV 2018 **Best Paper**]](https://openaccess.thecvf.com/content_ECCV_2018/papers/Martin_Sundermeyer_Implicit_3D_Orientation_ECCV_2018_paper.pdf)[cite 550]
 
+- **SSD-6D** Wadim Kehl, Fabian Manhardt (TUM), SSD-6D: Making RGB-Based 3D Detection and 6D Pose Estimation Great Again. [[ICCV 2017]](https://openaccess.thecvf.com/content_ICCV_2017/papers/Kehl_SSD-6D_Making_RGB-Based_ICCV_2017_paper.pdf)[[github]](https://wadimkehl.github.io/)[cite 928]
+
+- **Self6D** Gu Wang (Tsinghua), Fabian Manhardt (TUM), Self6D: Self-Supervised Monocular 6D Object Pose Estimation. [[ECCV 2020]](https://arxiv.org/pdf/2004.06468.pdf)[cite 97]
+    - 扩展篇Self6D++：Occlusion-Aware Self-Supervised Monocular 6D Object Pose Estimation. [[TPAMI 2021]](https://arxiv.org/pdf/2203.10339.pdf)[cite 15]
+
+- **G2L-Net** Wei Chen (国防科大&伯明翰), G2L-Net: Global to Local Network for Real-time 6D Pose Estimation with Embedding Vector Features. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/Chen_G2L-Net_Global_to_Local_Network_for_Real-Time_6D_Pose_Estimation_CVPR_2020_paper.pdf)[[github]](https://github.com/DC1991/G2L_Net)[cite 63]
+
+- **PointPoseNet** Wei Chen (国防科大&伯明翰), PointPoseNet: Point Pose Network for Robust 6D Object Pose Estimation. [[WACV 2020]](https://openaccess.thecvf.com/content_WACV_2020/papers/Chen_PonitPoseNet_Point_Pose_Network_for_Robust_6D_Object_Pose_Estimation_WACV_2020_paper.pdf)[cite 27]
 
 - **DOPE** Jonathan Tremblay, Yu Xiang, Dieter Fox (Nvidia), Deep Object Pose Estimation for Semantic Robotic Grasping of Household Objects. [[CoRL 2018]](https://arxiv.org/pdf/1809.10790.pdf)[[page]](https://research.nvidia.com/publication/2018-09_Deep-Object-Pose)[cite 606]
     - The first deep network trained only on synthetic data.
     - 域泛化（Domain randomization）
 
+- **CDPN** Zhigang Li, Gu Wang, Xiangyang Ji (Tsinghua), CDPN: Coordinates-Based Disentangled Pose Network for Real-Time RGB-Based 6-DoF Object Pose Estimation. [[ICCV 2019]](https://openaccess.thecvf.com/content_ICCV_2019/papers/Li_CDPN_Coordinates-Based_Disentangled_Pose_Network_for_Real-Time_RGB-Based_6-DoF_Object_ICCV_2019_paper.pdf)[cite 292]
 
-- TCLCH, Real-Time Monocular Pose Estimation of 3D Objects using Temporally Consistent Local Color Histograms. [[ICCV 2017](https://openaccess.thecvf.com/content_ICCV_2017/papers/Tjaden_Real-Time_Monocular_Pose_ICCV_2017_paper.pdf)] [cite 90]
-（传统方法，RBOT的三篇论文之一）
+- **PoseCNN** Yu Xiang (University of Washington), Tanner Schmidt (Nvidia), PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes [[RSS 2018]](https://arxiv.org/pdf/1711.00199.pdf)[[page]](https://rse-lab.cs.washington.edu/projects/posecnn/)[cite 1559]
+
+- **PVNet** Sida Peng, Xiaowei Zhou (浙大CAD), PVNet: Pixel-wise Voting Network for 6DoF Pose Estimation. [[CVPR 2019]](https://openaccess.thecvf.com/content_CVPR_2019/papers/Peng_PVNet_Pixel-Wise_Voting_Network_for_6DoF_Pose_Estimation_CVPR_2019_paper.pdf)[[github]](https://zju3dv.github.io/pvnet/)[cite 782]
+
+- **PVN3D** Yisheng He (港科大), Wei Sun (旷视) Haibin Huang (快手), PVN3D: A Deep Point-wise 3D Keypoints Voting Network for 6DoF Pose
+Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/He_PVN3D_A_Deep_Point-Wise_3D_Keypoints_Voting_Network_for_6DoF_CVPR_2020_paper.pdf)[[github]](https://github.com/ethnhe/PVN3D.git)[cite 317]
+
+- **---3** xxx (), xxx [[]]()
 
 
-- **SSD-6D** Wadim Kehl, Fabian Manhardt (TUM), SSD-6D: Making RGB-Based 3D Detection and 6D Pose Estimation Great Again. [[ICCV 2017]](https://openaccess.thecvf.com/content_ICCV_2017/papers/Kehl_SSD-6D_Making_RGB-Based_ICCV_2017_paper.pdf)[[github]](https://wadimkehl.github.io/)[cite 928]
 
-
-## Category Level
-
-### Year 2023
+## category level
 
 - **IST-Net** Jianhui Liu (CUHK), Prior-free Category-level Pose Estimation with Implicit Space Transformation.[[arxiv 2023]](https://arxiv.org/pdf/2303.13479.pdf)
-
-
-- **SLO-LocNet** Junyi Wang (北航|鹏城), Simultaneous Scene-independent Camera Localization and Category-level Object Pose Estimation via Multi-level Feature Fusion. [[VR 2023]](https://ieeexplore.ieee.org/abstract/document/10108437)
-
-
-- **Self-Pose** Kaifeng Zhang, 王小龙组 (UCSD), Self-Supervised Geometric Correspondence for Category-Level 6D Object Pose Estimation in the Wild. [[ICLR 2023]](https://arxiv.org/pdf/2210.07199.pdf)[[github]](https://kywind.github.io/self-pose)[cite 5]
-    - 相关 **RePoNet** Yang Fu, 王小龙组 (UCSD), Category-Level 6D Object Pose Estimation in the Wild: A Semi-Supervised Learning Approach and
-    A New Dataset. [[NIPS 2022]](https://proceedings.neurips.cc/paper_files/paper/2022/file/afe99e55be23b3523818da1fefa33494-Paper-Conference.pdf)[[github]](https://oasisyang.github.io/semi-pose/)[cite 6]
-
-
-- **GCASP** Guanglin Li (浙大CAD), Generative Category-Level Shape and Pose Estimation with Semantic Primitives. [[PMLR 2023]](https://proceedings.mlr.press/v205/li23d/li23d.pdf) [[github]](https://zju3dv.github.io/gCasp) [cite 4]
-
-
-- **---** xxx (), xxx [[]]()
-
-
-### Year 2022
 
 - **GPV-Pose** Yan Di (慕尼黑工大), GPV-Pose: Category-level Object Pose Estimation via Geometry-guided Point-wise Voting. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Di_GPV-Pose_Category-Level_Object_Pose_Estimation_via_Geometry-Guided_Point-Wise_Voting_CVPR_2022_paper.pdf)] [[github](https://github.com/lolrudy/GPV_Pose)] [cite 24]
 
@@ -157,67 +111,22 @@ Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers
 
 - **FS6D** Yisheng He (HKUST & 旷视), FS6D: Few-Shot 6D Pose Estimation of Novel Objects. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/He_FS6D_Few-Shot_6D_Pose_Estimation_of_Novel_Objects_CVPR_2022_paper.pdf)] [[github](https://fs6d.github.io/)] [cite 1]
 
-
 - **UDA-COPE** Taeyeop Lee (KAIST), UDA-COPE: Unsupervised Domain Adaptation for Category-level Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Lee_UDA-COPE_Unsupervised_Domain_Adaptation_for_Category-Level_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [cite 1]
 
 
-- **OnePose** Jiaming Sun (浙大&商汤), OnePose: One-Shot Object Pose Estimation without CAD Models. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Sun_OnePose_One-Shot_Object_Pose_Estimation_Without_CAD_Models_CVPR_2022_paper.pdf)] [[github](https://zju3dv.github.io/onepose/)] 
-    - 扩展篇 OnePose++: Keypoint-Free One-Shot Object Pose Estimation without CAD Models. [[arxiv 2023](https://arxiv.org/pdf/2301.07673.pdf)]
-
-
 - **TemplatePose** Van Nguyen Nguyen (CNRS, France), Templates for 3D Object Pose Estimation Revisited: Generalization to New Objects and Robustness to Occlusions. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Nguyen_Templates_for_3D_Object_Pose_Estimation_Revisited_Generalization_to_New_CVPR_2022_paper.pdf)] [[github](https://github.com/nv-nguyen/template-pose)] [cite 2]
-
-
-- **SAR-Net** Haitao Lin (复旦付彦伟组), SAR-Net: Shape Alignment and Recovery Network for Category-level 6D Object Pose and Size Estimation. [[CVPR 2022]](https://openaccess.thecvf.com/content/CVPR2022/papers/Lin_SAR-Net_Shape_Alignment_and_Recovery_Network_for_Category-Level_6D_Object_CVPR_2022_paper.pdf)[[github]](https://hetolin.github.io/SAR-Net)[cite 15]
-
-
-- **CenterSnap** Muhammad Zubair Irshad (乔治亚理工 & 丰田研究院), CenterSnap: Single-Shot Multi-Object 3D Shape Reconstruction and Categorical 6D Pose and Size Estimation. [[ICRA 2022](https://arxiv.org/pdf/2203.01929)] [[github](https://github.com/zubair-irshad/CenterSnap)] [cite 2]
-
-
-
-- **OLD-Net** Zhaoxin Fan (人大), Object level depth reconstruction for category level 6d object pose estimation from monocular RGB image. [[ECCV 2022](https://arxiv.org/pdf/2204.01586.pdf)] [[github]()] [cite 6]
-    <details>
-    <summary> note </summary>
-        1. 输入RGB，同时预测物体级深度图和NOCS表示，并将两者对齐(umeyama)得到物体Pose！具体做法暂略。
-        2. 另一个可以用来预测深度的工具是：arxiv2022_GCVD_Globally Consistent Video Depth and Pose Estimation。
-    </details>
-
-
-- **NeRF-Pose** Fu Li (国防科大&TUM), Nerf-pose: A first-reconstruct-then-regress approach for weakly-supervised 6d object pose estimation. [[arxiv 2022](https://arxiv.org/pdf/2203.04802.pdf)] [cite 8]
-
-
-
-
-### Year 2021 and before
-
-- **StablePose** Yifei Shi (国防科大), StablePose: Learning 6D Object Poses from Geometrically Stable Patches.[[CVPR 2021]](https://openaccess.thecvf.com/content/CVPR2021/papers/Shi_StablePose_Learning_6D_Object_Poses_From_Geometrically_Stable_Patches_CVPR_2021_paper.pdf) [cite 20]
-
-
-- **FS-Net** Wei Chen (Birmingham), FS-Net: Fast Shape-based Network for Category-Level 6D Object Pose Estimation with Decoupled Rotation Mechanism. [[CVPR 2021]](https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_FS-Net_Fast_Shape-Based_Network_for_Category-Level_6D_Object_Pose_Estimation_CVPR_2021_paper.pdf)[[github]](https://github.com/DC1991/FS-Net)[cite 89]
-
-
-- **Equi-Pose** Xiaolong Li, Yijia Weng (王鹤&&弋力组), Leveraging SE(3) Equivariance for Self-Supervised Category-Level Object Pose Estimation [[NIPS 2021]](https://proceedings.neurips.cc/paper_files/paper/2021/file/81e74d678581a3bb7a720b019f4f1a93-Paper.pdf)[[github]](https://dragonlong.github.io/equi-pose/)[cite 33]
-
 
 - **DualPoseNet** Jiehong Lin,...,Kui Jia, (华南理工 & 华为), DualPoseNet: Category-level 6D Object Pose and Size Estimation
 Using Dual Pose Network with Refined Learning of Pose Consistency. [[ICCV 2021](http://openaccess.thecvf.com/content/ICCV2021/papers/Lin_DualPoseNet_Category-Level_6D_Object_Pose_and_Size_Estimation_Using_Dual_ICCV_2021_paper.pdf)] [[github]()] [cite 17]
 
 
-- **SGPA**: Kai Chen, Qi Dou (CUHK), Structure-Guided Prior Adaptation for
-Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/papers/Chen_SGPA_Structure-Guided_Prior_Adaptation_for_Category-Level_6D_Object_Pose_Estimation_ICCV_2021_paper.pdf)] [[page](https://www.cse.cuhk.edu.hk/˜kaichen/projects/sgpa/sgpa.html)] [cite 14]
+- **CenterSnap** Muhammad Zubair Irshad (乔治亚理工 & 丰田研究院), CenterSnap: Single-Shot Multi-Object 3D Shape Reconstruction and Categorical 6D Pose and Size Estimation. [[ICRA 2022](https://arxiv.org/pdf/2203.01929)] [[github](https://github.com/zubair-irshad/CenterSnap)] [cite 2]
 
 
-- **CenterPose** Yunzhi Lin (佐治亚理工), Single-Stage Keypoint-Based Category-Level
-Object Pose Estimation from an RGB Image. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
-    <details>
-    <summary> 姊妹篇：CenterPoseTrack </summary>
+- **OnePose** Jiaming Sun (浙大&商汤), OnePose: One-Shot Object Pose Estimation without CAD Models. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Sun_OnePose_One-Shot_Object_Pose_Estimation_Without_CAD_Models_CVPR_2022_paper.pdf)] [[github](https://zju3dv.github.io/onepose/)] 
 
-    [CenterPoseTrack](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9811720&casa_token=jl6si6ZQoFEAAAAA:bXXs-DU7uhCrkHNO_vAHUCePwNRSUJEFvZymA_6eO_jZdh6LTVx2n4Z0vUUIt4pnGTiEv4cAAk_q)：Keypoint-Based Category-Level Object Pose Tracking from an RGB Sequence with Uncertainty Estimation. (基于CenterPose网络，补充贝叶斯滤波和卡尔曼滤波，具体暂略)
-    </details>
-
-
-- Objectron: A large scale dataset of object-centric videos in the wild with pose
-annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/Ahmadyan_Objectron_A_Large_Scale_Dataset_of_Object-Centric_Videos_in_the_CVPR_2021_paper.pdf)] [cite 45]
+    - 扩展篇OnePose++: Keypoint-Free One-Shot Object Pose
+Estimation without CAD Models. [[arxiv 2023](https://arxiv.org/pdf/2301.07673.pdf)]
 
 
 - **Latentfusion** Latentfusion: End-to-end differentiable reconstruction and rendering for unseen object pose estimation. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Park_LatentFusion_End-to-End_Differentiable_Reconstruction_and_Rendering_for_Unseen_Object_Pose_CVPR_2020_paper.pdf)] [[github](https://keunhong.com/publications/latentfusion/)] [cite 54]
@@ -225,75 +134,101 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 
 - **RLLG** Ming Cai (阿德莱德大学), Reconstruct locally, localize globally: A model free method for object pose estimation. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Cai_Reconstruct_Locally_Localize_Globally_A_Model_Free_Method_for_Object_CVPR_2020_paper.pdf)] [cite 9]
 
+- Objectron: A large scale dataset of object-centric videos in the wild with pose
+annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/Ahmadyan_Objectron_A_Large_Scale_Dataset_of_Object-Centric_Videos_in_the_CVPR_2021_paper.pdf)] [cite 45]
 
-- **CASS** Dengsheng Chen (国防科大), Learning **Ca**nonical **S**hape **S**pace for Category-Level 6D Object Pose and Size Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/Chen_Learning_Canonical_Shape_Space_for_Category-Level_6D_Object_Pose_and_CVPR_2020_paper.pdf)[cite 120]
 
+- **SGPA**: Kai Chen, Qi Dou (CUHK), Structure-Guided Prior Adaptation for
+Category-Level 6D Object Pose Estimation. [[ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/papers/Chen_SGPA_Structure-Guided_Prior_Adaptation_for_Category-Level_6D_Object_Pose_Estimation_ICCV_2021_paper.pdf)] [[page](https://www.cse.cuhk.edu.hk/˜kaichen/projects/sgpa/sgpa.html)] [cite 14]
+
+
+- **OLD-Net** Zhaoxin Fan (人大), Object level depth reconstruction for category level 6d object pose estimation from monocular RGB image. [[ECCV 2022](https://arxiv.org/pdf/2204.01586.pdf)] [[github]()] [cite 6]
+
+    <details>
+    <summary> 补注 </summary>
+
+    输入RGB，同时预测**物体级深度图**和NOCS表示，并将两者对齐(umeyama)得到物体Pose！具体做法暂略，另外一个可以用来预测深度的工具是：arxiv2022_GCVD_Globally Consistent Video Depth and Pose Estimation。
+    </details>
+
+- **NeRF-Pose** Fu Li (国防科大&TUM), Nerf-pose: A first-reconstruct-then-regress approach for weakly-supervised 6d object pose estimation. [[arxiv 2022](https://arxiv.org/pdf/2203.04802.pdf)] [cite 8]
+
+
+- **CenterPose** Yunzhi Lin (佐治亚理工), Single-Stage Keypoint-Based Category-Level
+Object Pose Estimation from an RGB Image. [[arxiv 2021](https://arxiv.org/abs/2111.10677)]
+
+    <details>
+    <summary> 姊妹篇：CenterPoseTrack </summary>
+
+    [CenterPoseTrack](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9811720&casa_token=jl6si6ZQoFEAAAAA:bXXs-DU7uhCrkHNO_vAHUCePwNRSUJEFvZymA_6eO_jZdh6LTVx2n4Z0vUUIt4pnGTiEv4cAAk_q)：Keypoint-Based Category-Level Object Pose Tracking from an RGB Sequence with Uncertainty Estimation. (基于CenterPose网络，补充贝叶斯滤波和卡尔曼滤波，具体暂跳过)
+    </details>
+
+- **SLO-LocNet** Junyi Wang (北航|鹏城), Simultaneous Scene-independent Camera Localization and Category-level Object Pose Estimation via Multi-level Feature Fusion. [[VR 2023]](https://ieeexplore.ieee.org/abstract/document/10108437)
+
+- **StablePose** Yifei Shi (国防科大), StablePose: Learning 6D Object Poses from Geometrically Stable Patches.[[CVPR 2021]](https://openaccess.thecvf.com/content/CVPR2021/papers/Shi_StablePose_Learning_6D_Object_Poses_From_Geometrically_Stable_Patches_CVPR_2021_paper.pdf) [cite 20]
+
+- **RePoNet** Yang Fu, 王小龙组 (UCSD), Category-Level 6D Object Pose Estimation in the Wild: A Semi-Supervised Learning Approach and
+A New Dataset. [[NIPS 2022]](https://proceedings.neurips.cc/paper_files/paper/2022/file/afe99e55be23b3523818da1fefa33494-Paper-Conference.pdf)[[github]](https://oasisyang.github.io/semi-pose/)[cite 6]
+
+- **Self-Pose** Kaifeng Zhang, 王小龙组 (UCSD), Self-Supervised Geometric Correspondence for Category-Level 6D Object Pose Estimation in the Wild. [[ICLR 2023]](https://arxiv.org/pdf/2210.07199.pdf)[[github]](https://kywind.github.io/self-pose)[cite 5]
+
+- **GCASP** Guanglin Li (浙大CAD), Generative Category-Level Shape and Pose Estimation with Semantic Primitives. [[PMLR 2023]](https://proceedings.mlr.press/v205/li23d/li23d.pdf) [[github]](https://zju3dv.github.io/gCasp) [cite 4]
 
 - **Shape Prior** Meng Tian (新加坡国立NUS), Shape Prior Deformation for Categorical 6D Object Pose and Size Estimation. [[ECCV 2020]](https://arxiv.org/pdf/2007.08454.pdf)[[github]](https://github.com/mentian/object-deformnet)[cite 105]
 
+- **CASS** Dengsheng Chen (国防科大), Learning **Ca**nonical **S**hape **S**pace for Category-Level 6D Object Pose and Size Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers/Chen_Learning_Canonical_Shape_Space_for_Category-Level_6D_Object_Pose_and_CVPR_2020_paper.pdf)[cite 120]
+
+- **Neural-Obj-Fitting** Xu Chen (ETH), Category Level Object Pose Estimation via Neural Analysis-by-Synthesis.[[ECCV 2020]](https://arxiv.org/pdf/2008.08145.pdf)[cite 78]
 
 - **CPS++** Fabian Manhardt (TUM), Gu Wang (Tsinghua), CPS++: Improving Class-level 6D Pose and Shape Estimation From Monocular Images With Self-Supervised Learning. [[arxiv 2020]](https://arxiv.org/pdf/2003.05848.pdf)[cite 35]
 
+- **FS-Net** Wei Chen (Birmingham), FS-Net: Fast Shape-based Network for Category-Level 6D Object Pose Estimation with Decoupled Rotation Mechanism. [[CVPR 2021]](https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_FS-Net_Fast_Shape-Based_Network_for_Category-Level_6D_Object_Pose_Estimation_CVPR_2021_paper.pdf)[[github]](https://github.com/DC1991/FS-Net)[cite 89]
 
-- **Neural Object Fitting** - Category level object pose estimation via neural analysis-by-synthesis. [[ECCV 2020](https://arxiv.org/pdf/2008.08145)] [cite 78]
+- **Equi-Pose** Xiaolong Li, Yijia Weng (王鹤&&弋力组), Leveraging SE(3) Equivariance for Self-Supervised Category-Level Object Pose Estimation [[NIPS 2021]](https://proceedings.neurips.cc/paper_files/paper/2021/file/81e74d678581a3bb7a720b019f4f1a93-Paper.pdf)[[github]](https://dragonlong.github.io/equi-pose/)[cite 33]
 
+- **SAR-Net** Haitao Lin (复旦付彦伟组), SAR-Net: Shape Alignment and Recovery Network for Category-level 6D Object Pose and Size Estimation. [[CVPR 2022]](https://openaccess.thecvf.com/content/CVPR2022/papers/Lin_SAR-Net_Shape_Alignment_and_Recovery_Network_for_Category-Level_6D_Object_CVPR_2022_paper.pdf)[[github]](https://hetolin.github.io/SAR-Net)[cite 15]
+
+- **---3** xxx (), xxx [[]]()
 
 ## Others
 
+- **UniPose** Bruno Artacho (RIT), UniPose: Unified Human Pose Estimation in Single Images and Videos. [[CVPR 2020](https://openaccess.thecvf.com/content_CVPR_2020/papers/Artacho_UniPose_Unified_Human_Pose_Estimation_in_Single_Images_and_Videos_CVPR_2020_paper.pdf)] [cite 78]
 
-- **MaskFusion** Martin Runz (伦敦学院大学), MaskFusion: Real-Time Recognition, Tracking and Reconstruction of Multiple Moving Objects. [[ISMAR 2018](https://arxiv.org/pdf/1804.09194)] [[page](http://visual.cs.ucl.ac.uk/pubs/maskfusion/)] [cite 207]（物体级的语义动态SLAM）
 
+- **MaskFusion** Martin Runz (伦敦学院大学), MaskFusion: Real-Time Recognition, Tracking and Reconstruction of Multiple Moving Objects. [[ISMAR 2018](https://arxiv.org/pdf/1804.09194)] [[page](http://visual.cs.ucl.ac.uk/pubs/maskfusion/)] [cite 207]
+    
+    物体级的语义动态SLAM。
 
 - **POMNet** Pose for Everything: Towards **C**ategory-**A**gnostic **P**ose **E**stimation. [[ECCV 2022]()] [[github](https://github.com/luminxu/Pose-for-Everything)] [cite ]
 
+    关键词：**小样本设置** (metric-learning based)；2D关键点检测; transformer-based.（注：标题中pose其实指关键点）
+
     <details>
-    <summary> notes </summary>
+    <summary> 相关评述 </summary>
 
-    1. 关键词：**小样本设置** (metric-learning based)；2D关键点检测; transformer-based.（注：标题中pose其实指关键点）
+    1.对比：作者称最相关的是[StarMap (ECCV 2018)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Xingyi_Zhou_Category-Agnostic_Semantic_Keypoint_ECCV_2018_paper.pdf)，因为都是关注类别无关的关键点！只不过StarMap要用到3D CAD model并标注3D关键点，而本文是关注2D关键点。
 
-    2. 对比：作者称最相关的是[StarMap (ECCV 2018)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Xingyi_Zhou_Category-Agnostic_Semantic_Keypoint_ECCV_2018_paper.pdf)，因为都是关注类别无关的关键点！只不过StarMap要用到3D CAD model并标注3D关键点，而本文是关注2D关键点。
-
-    3. 概述StarMap：StarMap即单通道heatmap，可得所有关键点的2D像素坐标，同时预测DepthMap和CanViewFeature，分别得各像素对应的depth值，和canonical标准物体坐标系下的3D坐标；2D像素和标准3D坐标可以直接PnP，文中是2D像素+depth先恢复到cam下的3D坐标，再和标准3D坐标得物体6D pose！
-    
-    4. 评StarMap：其实这不就是**NOCS**了嚒！只不过StarMap是focus关键点，而NOCS是对物体所有可见像素，且NOCS的depth是传感器值而非预测值！另外，ICCV'19_**Pix2Pose**也是预测像素的标注3D坐标，与NOCS如出一辙，只不过它暂只关注了instance-level！
+    2.概述StarMap：StarMap即单通道heatmap，可得所有关键点的2D像素坐标，同时预测DepthMap和CanViewFeature，分别得各像素对应的depth值，和canonical标准物体坐标系下的3D坐标；2D像素和标准3D坐标可以直接PnP，文中是2D像素+depth先恢复到cam下的3D坐标，再和标准3D坐标得物体6D pose！——> **自评**：其实这不就是CVPR'19_**NOCS**了嚒！只不过StarMap是focus关键点，而NOCS是对物体所有可见像素，且NOCS的depth是传感器值而非预测值！另外，ICCV'19_**Pix2Pose**也是预测像素的标注3D坐标，与NOCS如出一辙，只不过它暂只关注了instance-level！
 
     </details>
 
 
-- **--** [[]]() [[]]() [cite ]
+- **--** [[CVPR ]()] [[github]()] [cite ]
 
 
 ## Pose Tracking
 
-
 - **TP-AE** Linfang Zheng (南方科大 & 英国伯明翰大学), TP-AE: Temporally Primed 6D Object Pose Tracking with Auto-Encoders. [[ICRA 2022](https://research.birmingham.ac.uk/files/164770788/_ICRA_TP_AE_6D_Object_Tracking.pdf)] [[github](https://github.com/Lynne-Zheng-Linfang/TP-AE_Object_tracking)] [cite 2] 
 
 
-- **6-Pack**: Chen Wang (SJTU), 6-pack: Category-level 6d pose tracker with anchor-based keypoints.[[ICRA 2020]](https://arxiv.org/pdf/1910.10750.pdf)[[github]](https://sites.google.com/view/6packtracking)[cite 120]
+- **ROFT** ROFT: Real-Time Optical Flow-Aided 6D Object Pose and Velocity Tracking. [[arxiv 2021]()] [[github]()] [cite 11]
 
 
-- **BundleTrack** Bowen Wen (罗格斯大学), BundleTrack: 6D Pose Tracking for Novel Objects without Instance or Category-Level 3D Models.[[IROS 2021]](https://arxiv.org/pdf/2108.00516.pdf) [[github](https://github.com/wenbowen123/BundleTrack)] [cite 48]
+## Object-level SLAM
+
+- **suo-slam** Nathaniel Merrill (特拉华大学&TUM), **S**ymmetry and **U**ncertainty-Aware **O**bject **SLAM** for 6DoF Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Merrill_Symmetry_and_Uncertainty-Aware_Object_SLAM_for_6DoF_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [[github](https://github.com/rpng/suo_slam)] [cite 6]
 
 
-- **RBOT** Henning Tjaden (RheinMain University), A Region-based Gauss-Newton Approach to Real-Time Monocular Multiple Object Tracking. [[TPAMI 2018]](https://arxiv.org/pdf/1807.02087.pdf) [[github]](https://github.com/henningtjaden/RBOT) [cite 75]
-
-
-- **ICG** Iterative Corresponding Geometry: Fusing Region and Depth for Highly Efficient 3D Tracking of Textureless Objects.[[CVPR 2022]](https://openaccess.thecvf.com/content/CVPR2022/papers/Stoiber_Iterative_Corresponding_Geometry_Fusing_Region_and_Depth_for_Highly_Efficient_CVPR_2022_paper.pdf)[cite 9]
-
-
-- **CAPTRA** Yijia Weng (北大王鹤组), CAPTRA: CAtegory-Level Pose Tracking for Rigid and Articulated Objects From Point Clouds. [[ICCV 2021]](https://openaccess.thecvf.com/content/ICCV2021/papers/Weng_CAPTRA_CAtegory-Level_Pose_Tracking_for_Rigid_and_Articulated_Objects_From_ICCV_2021_paper.pdf) [[github]](https://yijiaweng.github.io/CAPTRA/) [cite 39]
-
-
-- **3DObjectTracking Repo** [[link]](https://github.com/DLR-RM/3DObjectTracking)
-
-
-- **--** CatTrack: Single-Stage Category-Level 6D Object Pose Tracking via Convolution and Vision Transformer. [[]]() [[]]() [cite ]
-
-
-- **--** Cluster-Based 3D Keypoint Detection for Category-Agnostic 6D Pose Tracking. [[]]() [[]]() [cite ]
-
-- **--** [[]]() [[]]() [cite ]
-
+- - -
 
 ## Paper notes
 
@@ -424,77 +359,6 @@ Occlusion-LINEMOD datasets.
 </details>
 
 
-
-<details>
-<summary> <b> CenterSnap (ICRA 2022) - center系单阶段！AE形状重建 </b> </summary>
-
-- 要解决：现有的基于“标准坐标回归”和“直接pose回归”方案，计算量大，并且在复杂的多目标场景中性能不好。Existing approaches mainly follow a complex multi-stage pipeline which first localizes and detects each object instance in the image and then regresses to either their 3D meshes or 6D poses. These approaches suffer from high-computational cost and low performance in complex multi-object scenarios, where occlusions can be present. 
-
-- 摘要：同时进行多目标3D重建和基于单视图RGB-D的pose估计，参考CenterNet将目标表示为点。 This paper studies the complex task of simultaneous multi-object 3D reconstruction, 6D pose and size estimation from a single-view RGB-D observation. Our method treats object instances as spatial centers where each center denotes the complete shape of an object along with its 6D pose and size.
-
-- 单阶段和两阶段框架对比
-    ![CenterSnap_compare](assets_pose/CenterSnap_compare.png)
-- 网络结构：
-  1. 直接输入RGB-D图片，提取多尺度FPN特征。这里直接resnet处理depth图好像不太常见！
-  2. FPN特征分别输入2个head网络，其中heatmap head用于定位物体的center，param head用于输出全部3D信息，包括shape的128维latent code，和13维的Pose信息（即9维R，3维t，1维s），至于3维的size，可以从latent code重建的标准化的物体点云的bbox获取到，再乘以scale缩放到原来尺寸！
-  3. shape的latent code的ground truth，是通过自编码器AE预先训练学习的！
-    ![CenterSnap_archi](assets_pose/CenterSnap_archi.png)
-
-</details>
-
-
-<details>
-<summary> <b> CenterPose (ICRA 2022)  </b> </summary>
-
-- **关键词**：CenterNet inspired; Keypoint-based; Category-level 6-DoF pose.
-- **摘要**：The proposed network performs 2D object detection, detects 2D keypoints, estimates 6-DoF pose, and regresses relative bounding cuboid dimensions. These quantities are estimated in a sequential fashion, leveraging the recent idea of convGRU for **propagating information from easier tasks to those that
-are more difficult**... on the challenging Objectron benchmark...
-
-- **网络结构**：输入RGB, 一个分支做检测，得到物体中心坐标和bbox；一个分支做关键点预测（基于2种方式），**关键点是3Dbbox的8个角点**；一个分支预测bbox的相对大小，这样可以得到标准物体坐标系下的3D关键点坐标 (up to scale)。于是有了2D关键点和3D关键点，就可以PnP得pose了。（细节存疑暂略：两种方式预测的2D关键点一起用于Levenberg-Marquardt version of PnP）
-    ![CenterPose_pipe](assets_pose/CenterPose_pipe.png)
-
-</details>
-
-
-<details>
-<summary> <b> YOLOPose (arxiv 2022)  </b> </summary>
-
-- **摘要**：We propose YOLOPose, a **Transformer-based multi-object monocular 6D pose estimation** method based on **keypoint regression**. In contrast to the standard heatmaps for predicting keypoints in an image, we directly regress the keypoints.  Additionally, we employ a learnable orientation estimation module to predict the orientation from the keypoints. Our model is **end-to-end** differentiable and is suitable for **real-time** applications. ...test on the YCBVideo dataset.
-
-- 注：32 keypoints (the eight corners of the 3D bounding box and the 24 intermediate bounding box keypoints)
-
-- **示意图**
-    ![YOLOPose_vis](assets_pose/YOLOPose_vis.png)
-
-- **网络结构**
-    ![YOLOPose_archi](assets_pose/YOLOPose_archi.png)
-
-</details>
-
-
-<details>
-<summary> <b> OnePose (CVPR 2022) - SFM重建 + 转为相机定位任务  </b> </summary>
-
-- **OnePose**：One-shot之意！因涉及重建，自然model-free，要现成的2D检测器提供bbox！
-- **思路**：基于传统的定位pipeline来做物体pose任务，即“offline mapping + online localization”，mapping就是要先给定一段物体的video scan，利用SFM进行稀疏物体点云重建（物体点云看作不动的scene）；localization就是对于query img，通过特征匹配，获取相机的pose，注意这个pose是相机相对于scene的，这里也即相对于物体的，所以相机pose的逆，就是最终要求的物体的pose！关于特征匹配，传统是2D到2D，作者提出3D-2D，即先把ref video frame中的2D特征点的描述子，基于注意力聚合为对应的3D地图点的描述子，然后基于描述子，匹配3D地图点和query img中的2D特征点，有了匹配，就可以通过RANSAC PNP求解位姿！
-- **其他**: 论文中是基于ARKit/ARCore工具标注出物体的bbox（相当于指定标准的物体坐标系）和每帧的相机位姿，拍摄ref video时假设物体竖直放置于平面，且保持静止，故bbox限于绕竖直的z轴旋转；OnePose的位姿估计模块仅处理关键帧，所以还有位姿tracking模块处理每一帧，这部分在补充材料中，暂略~
-- **缺点**：如作者所言，依赖于局部特征匹配（特征如SIFT, SuperPoint，匹配器如最近邻，SuperGlue），匹配限于3D bbox内的重建点云，和query img上的2D bbox内的特征点，所以对于低纹理的物体可能失败，当训练和测试的seq差异太大时，也可能失败！
-- **扩展**: 作者自行扩展了OnePose++，丢掉了基于关键点+描述子的匹配策略！提升了处理低纹理物体的能力！具体内容暂略。
-
-- **摘要**：OnePose draws the idea from visual localization and only requires a simple RGB video scan of the object to build a sparse SfM model of the object. We propose a new graph attention network that directly matches 2D interest points in the query image with the 3D points in the SfM model, resulting in efficient and robust pose estimation. ...run in real-time. ... test on self-collected dataset that consists of 450 sequences of 150 objects.
-
-- 关注related works章节；摘录对NOCS系列方法的评价： A limitation of this line of work is that the shape and the appearance of some instances could vary significantly even they belong to the same category, thus the generalization capabilities of trained networks over these instances are questionable. Moreover, accurate CAD models are still required
-for ground-truth NOCS map generation during training, and different networks need to be trained for different categories. 总结就是NOCS只是测试阶段不需要CAD models，训练阶段仍需要，因此在本文中仍被划分为Model-Based方法。
-
-- **对比各种设置的示意图**
-    ![OnePose_vis](assets_pose/OnePose_vis.png)
-
-- **算法流程**
-    ![OnePose_overview](assets_pose/OnePose_overview.png)
-
-</details>
-
-
 <details>
 <summary> <b> SurfEmb (CVPR 2022) </b> </summary>
 
@@ -562,6 +426,24 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 
 <details>
+<summary> <b> CenterSnap (ICRA 2022) - center系单阶段！AE形状重建 </b> </summary>
+
+- 要解决：现有的基于“标准坐标回归”和“直接pose回归”方案，计算量大，并且在复杂的多目标场景中性能不好。Existing approaches mainly follow a complex multi-stage pipeline which first localizes and detects each object instance in the image and then regresses to either their 3D meshes or 6D poses. These approaches suffer from high-computational cost and low performance in complex multi-object scenarios, where occlusions can be present. 
+
+- 摘要：同时进行多目标3D重建和基于单视图RGB-D的pose估计，参考CenterNet将目标表示为点。 This paper studies the complex task of simultaneous multi-object 3D reconstruction, 6D pose and size estimation from a single-view RGB-D observation. Our method treats object instances as spatial centers where each center denotes the complete shape of an object along with its 6D pose and size.
+
+- 单阶段和两阶段框架对比
+    ![CenterSnap_compare](assets_pose/CenterSnap_compare.png)
+- 网络结构：
+  1. 直接输入RGB-D图片，提取多尺度FPN特征。这里直接resnet处理depth图好像不太常见！
+  2. FPN特征分别输入2个head网络，其中heatmap head用于定位物体的center，param head用于输出全部3D信息，包括shape的128维latent code，和13维的Pose信息（即9维R，3维t，1维s），至于3维的size，可以从latent code重建的标准化的物体点云的bbox获取到，再乘以scale缩放到原来尺寸！
+  3. shape的latent code的ground truth，是通过自编码器AE预先训练学习的！
+    ![CenterSnap_archi](assets_pose/CenterSnap_archi.png)
+
+</details>
+
+
+<details>
 <summary> <b> TemporalFusion (IROS 2021) -- 时序特征融合！ </b> </summary>
 
 - 自评：1.该工作是model-based而非类别级；2. 时序融合的方式还是太粗糙，直接concat，不过好歹避免了对齐问题（FaF中直接concat特征图会引入对不齐的问题）；3. 实验方面仅仅对比了DenseFusion。
@@ -575,6 +457,45 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
     - (4) 考虑到不同特征对最终的pose估计贡献不同，采用CBAM注意力给特征的通道加权，然后接3个head分别预测$R$, $T$和置信度$c$，取置信度最大的$c$对应的预测作为最终结果。
     ![TemporalFuse_archi](assets_pose/TemporalFuse_archi.png)
     ![TemporalFuse_reg](assets_pose/TemporalFuse_reg.png)
+
+</details>
+
+
+<details>
+<summary> <b> YOLOPose (arxiv 2022)  </b> </summary>
+
+- **摘要**：We propose YOLOPose, a **Transformer-based multi-object monocular 6D pose estimation** method based on **keypoint regression**. In contrast to the standard heatmaps for predicting keypoints in an image, we directly regress the keypoints.  Additionally, we employ a learnable orientation estimation module to predict the orientation from the keypoints. Our model is **end-to-end** differentiable and is suitable for **real-time** applications. ...test on the YCBVideo dataset.
+
+- 注：32 keypoints (the eight corners of the 3D bounding box and the 24 intermediate bounding box keypoints)
+
+- **示意图**
+    ![YOLOPose_vis](assets_pose/YOLOPose_vis.png)
+
+- **网络结构**
+    ![YOLOPose_archi](assets_pose/YOLOPose_archi.png)
+
+</details>
+
+
+<details>
+<summary> <b> OnePose (CVPR 2022) - SFM重建 + 转为相机定位任务  </b> </summary>
+
+- **OnePose**：One-shot之意！因涉及重建，自然model-free，要现成的2D检测器提供bbox！
+- **思路**：基于传统的定位pipeline来做物体pose任务，即“offline mapping + online localization”，mapping就是要先给定一段物体的video scan，利用SFM进行稀疏物体点云重建（物体点云看作不动的scene）；localization就是对于query img，通过特征匹配，获取相机的pose，注意这个pose是相机相对于scene的，这里也即相对于物体的，所以相机pose的逆，就是最终要求的物体的pose！关于特征匹配，传统是2D到2D，作者提出3D-2D，即先把ref video frame中的2D特征点的描述子，基于注意力聚合为对应的3D地图点的描述子，然后基于描述子，匹配3D地图点和query img中的2D特征点，有了匹配，就可以通过RANSAC PNP求解位姿！
+- **其他**: 论文中是基于ARKit/ARCore工具标注出物体的bbox（相当于指定标准的物体坐标系）和每帧的相机位姿，拍摄ref video时假设物体竖直放置于平面，且保持静止，故bbox限于绕竖直的z轴旋转；OnePose的位姿估计模块仅处理关键帧，所以还有位姿tracking模块处理每一帧，这部分在补充材料中，暂略~
+- **缺点**：如作者所言，依赖于局部特征匹配（特征如SIFT, SuperPoint，匹配器如最近邻，SuperGlue），匹配限于3D bbox内的重建点云，和query img上的2D bbox内的特征点，所以对于低纹理的物体可能失败，当训练和测试的seq差异太大时，也可能失败！
+- **扩展**: 作者自行扩展了OnePose++，丢掉了基于关键点+描述子的匹配策略！提升了处理低纹理物体的能力！具体内容暂略。
+
+- **摘要**：OnePose draws the idea from visual localization and only requires a simple RGB video scan of the object to build a sparse SfM model of the object. We propose a new graph attention network that directly matches 2D interest points in the query image with the 3D points in the SfM model, resulting in efficient and robust pose estimation. ...run in real-time. ... test on self-collected dataset that consists of 450 sequences of 150 objects.
+
+- 关注related works章节；摘录对NOCS系列方法的评价： A limitation of this line of work is that the shape and the appearance of some instances could vary significantly even they belong to the same category, thus the generalization capabilities of trained networks over these instances are questionable. Moreover, accurate CAD models are still required
+for ground-truth NOCS map generation during training, and different networks need to be trained for different categories. 总结就是NOCS只是测试阶段不需要CAD models，训练阶段仍需要，因此在本文中仍被划分为Model-Based方法。
+
+- **对比各种设置的示意图**
+    ![OnePose_vis](assets_pose/OnePose_vis.png)
+
+- **算法流程**
+    ![OnePose_overview](assets_pose/OnePose_overview.png)
 
 </details>
 
@@ -616,7 +537,7 @@ projected 2D keypoint. We use a fully convolutional neural network to regress th
 
 - 第二阶段计算相机delta pose的图示
     ![CosyPose_Fig5](assets_pose/CosyPose_Fig5.png)
-    
+
 </details>
 
 
@@ -687,6 +608,19 @@ bin-picking tasks.
 - **网络结构**
     ![VideoPose_fig1](assets_pose/VideoPose_fig1.png)
     ![VideoPose_fig2](assets_pose/VideoPose_fig2.png)
+
+</details>
+
+
+<details>
+<summary> <b> CenterPose (ICRA 2022)  </b> </summary>
+
+- **关键词**：CenterNet inspired; Keypoint-based; Category-level 6-DoF pose.
+- **摘要**：The proposed network performs 2D object detection, detects 2D keypoints, estimates 6-DoF pose, and regresses relative bounding cuboid dimensions. These quantities are estimated in a sequential fashion, leveraging the recent idea of convGRU for **propagating information from easier tasks to those that
+are more difficult**... on the challenging Objectron benchmark...
+
+- **网络结构**：输入RGB, 一个分支做检测，得到物体中心坐标和bbox；一个分支做关键点预测（基于2种方式），**关键点是3Dbbox的8个角点**；一个分支预测bbox的相对大小，这样可以得到标准物体坐标系下的3D关键点坐标 (up to scale)。于是有了2D关键点和3D关键点，就可以PnP得pose了。（细节存疑暂略：两种方式预测的2D关键点一起用于Levenberg-Marquardt version of PnP）
+    ![CenterPose_pipe](assets_pose/CenterPose_pipe.png)
 
 </details>
 
@@ -1033,7 +967,7 @@ network contains **less than 4M parameters**.
 
 
 <details>
-<summary> <b> TexPose (CVPR 2023) 自监督,NeRF学纹理 </b> </summary>
+<summary> <b> TexPose (CVPR 2023) 自监督 </b> </summary>
 
 - **摘要**：In this paper, we introduce neural texture learning for 6D object pose estimation **from synthetic data and a few unlabelled real images**. Our major contribution is a novel learning scheme which removes the drawbacks of previous works, namely the strong dependency on co-modalities or additional refinement. We 
 decompose **self-supervision** for 6D object pose into **Texture learning and Pose learning**. We propose a surfel-conditioned adversarial training loss and a synthetic texture regularisation term to handle pose errors and segmentation imperfection.
@@ -1053,9 +987,10 @@ an intermediate representation.
 
 
 <details>
-<summary> <b> GDR-Net (CVPR 2021) 基于匹配map回归位姿  </b> </summary>
+<summary> <b> GDR-Net (CVPR 2021)  </b> </summary>
 
-- **摘要**：In this work, we perform an indepth investigation on both direct and indirect methods, and propose a simple yet effective Geometry-guided Direct Regression Network (GDR-Net) to learn the 6D pose in an **end-to-end** manner from dense **correspondence-base** intermediate geometric representations.
+- **摘要**：In this work, we perform an indepth investigation on both direct and indirect methods, and propose a simple yet effective Geometry-guided Direct Regression Network (GDR-Net) to learn the 6D pose in an
+**end-to-end** manner from dense **correspondence-base** intermediate geometric representations.
 
 - **网络结构**
 1. **Parameterization of 3D Rotation**: Common choices are unit quaternions [60,33,27], log quaternions [37], or Lie algebra-based vectors [11]. Nevertheless, it is well-known that all representations with four or fewer dimensions for 3D rotation have discontinuities in the Euclidean space. [65] proposed a novel continuous 6-dimensional representation for R in SO(3), which has proven promising [65, 25]. Specifically, the 6-dimensional representation
@@ -1071,9 +1006,9 @@ thus the probabilities in the predicted MSRA implicitly represent the symmetry o
 
 
 <details>
-<summary> <b> MegaPose (arxiv 2022) 渲染+比较 </b> </summary>
+<summary> <b> MegaPose (arxiv 2022)  </b> </summary>
 
-- **摘要**：We introduce MegaPose, a method to estimate the 6D pose of **novel objects** in a single RGB or RGB-D image, that is, objects unseen during training. At inference time, the method only assumes knowledge of (i) a **region of interest** displaying the object in the image and (ii) a **CAD model** of the observed object. The contributions are threefold. 1) We present a 6D pose refiner based on a **render & compare** strategy. 2) We leverage a network trained to classify whether the pose error between a synthetic rendering and an observed image of the same object can be corrected by the refiner. 3) We introduce a large scale synthetic dataset of photorealistic images. We train our approach on this large synthetic dataset and apply it **without retraining** to hundreds of novel objects in real images.
+- **摘要**：We introduce MegaPose, a method to estimate the 6D pose of **novel objects** in a single RGB or RGB-D image, that is, objects unseen during training. At inference time, the method only assumes knowledge of (i) a **region of interest** displaying the object in the image and (ii) a **CAD model** of the observed object. The contributions are threefold. 1) We present a 6D pose refiner based on a render & compare strategy. 2) We leverage a network trained to classify whether the pose error between a synthetic rendering and an observed image of the same object can be corrected by the refiner. 3) We introduce a large scale synthetic dataset of photorealistic images. We train our approach on this large synthetic dataset and apply it **without retraining** to hundreds of novel objects in real images.
 
 - **比较**：类别级方法受限于一个类别，而本文这类处理novel物体的方法，则受限于模型依赖，主观上二者地位一样，各有侧重。
 
@@ -1125,10 +1060,15 @@ thus the probabilities in the predicted MSRA implicitly represent the symmetry o
 - **摘要**：This paper focuses on the instance-level 6D pose tracking problem with a symmetric and textureless object under occlusion. The proposed TP-AE framework consists of a prediction step and a temporally primed pose estimation step. ... test on T-LESS dataset while running in real-time at 26 FPS.
 
 - **网络结构**： 
+
     (1) 在每个time step，先验位姿估计模块，将历史位姿估计序列输入GRU-based网络，生成当前帧的位姿先验；
+
     (2) 预测的位姿先验，和当前帧的RGB-D数据，一并输入pose-image融合模块，生成RGB-Cloud pair，接着送入3个分支，分别预测物体旋转、平移和可见部分。
+
     (3) 注意只有训练阶段需要encoder和decoder一起学习latent code，推理阶段，不再需要decoder，因为如下图，是直接基于latent code去预测R/t；
+
     (4) 自：至少预测的平移量t的误差，来自2个方面，即GRU先验预测，和对$\Delta{T}$的预测。
+
     ![TPAE_archi](assets_pose/TPAE_archi.png)
     ![TPAE_fig4](assets_pose/TPAE_fig4.png)
 
@@ -1136,11 +1076,51 @@ thus the probabilities in the predicted MSRA implicitly represent the symmetry o
 
 
 <details>
-<summary> <b> ...  </b> </summary>
+<summary> ROFT (arxiv 2021) </summary>
+
+- 摘要：We introduce ROFT, a Kalman filtering approach for 6D object pose and velocity tracking from a stream of RGB-D images. By leveraging real-time optical flow, ROFT synchronizes delayed outputs of low frame rate CNN (for instance segmentation and 6D pose estimation) with the RGB-D input stream to
+achieve fast and precise 6D object pose and velocity tracking. ... test on newly introduced Fast-YCB, and HO-3D.
+
+- 网络结构：暂跳过
+    ![ROFT_archi](assets_pose/ROFT_archi.png)
+
+</details>
+
+
+<details>
+<summary> <b> ... ()  </b> </summary>
 
 - **摘要**：
+
 - **网络结构**
-    ![](assets_pose/.png)
     ![](assets_pose/.png)
 
 </details>
+
+---
+## Object-level SLAM
+
+
+<details>
+<summary> <b> suo-slam (CVPR 2022) - 关键点+g2o图优化   </b> </summary>
+
+- **关键词**：依赖3D CAD模型；RGB输入；2D热力图关键点；3D人工标注关键点；同时优化相机和物体的pose。
+- **隐含假设**：(1) 静态场景，即物体不动; (2) 场景中不含多实例，代码中是直接根据物体id进行前后帧的物体关联！
+- **摘要**：We propose a **keypoint-based object-level SLAM** framework that can provide globally consistent 6DoF pose estimates for symmetric and asymmetric objects alike. To the best of our knowledge, our system is among **the first to utilize the camera pose information from SLAM to provide prior knowledge for tracking keypoints** on symmetric objects – ensuring that new measurements are consistent with the current 3D scene. Moreover, our semantic keypoint network is trained to predict the Gaussian covariance for the keypoints that captures the true error of the prediction, and thus is not only useful as a weight for the residuals in the system’s optimization problems, but also as a means to detect harmful statistical outliers without choosing a manual threshold...at a real-time speed...
+
+- **算法框架**
+
+    - **整体流程**：输入一帧RGB图片，分两路处理包含的物体：即先处理非对称物体，再处理对称物体，这么做的原因是，为了基于非对称物体估计当前帧的cam_pose，从而为后续处理对称物体时，构造prior。前端tracking看作是获取当前帧的cam_pose，后端优化看作是对obj_pose和cam_pose进行同步优化！
+    - **符号约定**：本文中，将第一帧设定为world或称global坐标系(记为G)，obj_pose是T_O2G，cam_pose是T_G2C；
+    - **估计obj_pose的方式**：基于bbox，将输入图片ROI_align到固定尺寸，和prior tensor(无prior时是0填充)堆叠，输入关键点网络，预测物体的2D关键点，然后结合3D model上标注的3D关键点，就可以PnP计算该obj相对cam的pose，T_O2C；对于第一帧的物体，T_O2C也是T_O2G。注意，场景中的物体pose会被维护记录下来，代码中是存于字典`self.obj_poses`中，对于第一次检测到的物体，若它被成功初始化，即估计出了T_O2G，则该pose会立马存入字典；对于在前序帧已经被初始化的物体，即字典中已有该物体的pose值，只有在当前帧估计的pose，比字典中存储的更准确时才会更新（比如取最近15帧统计重投影时的内点数来确定），对应代码中的re-init步骤！
+    - **估计cam_pose的方式**：(1) 根据保存的前序帧估计的物体pose(T_O2G)，和当前帧基于PnP的物体pose(T_O2C)，基于RANSAC得当前帧cam_pose: T_G2C = T_O2C @ inv(T_O2G)；其中，RANSAC中要check的hypoth，看作是根据不同物体的"O"获得的T_G2C；(2) 如果估计失败，就构造物体的3D bbox(对应T_O2G的平移量)和2D bbox的center的匹配，然后PnP得cam_pose；（3）如果还失败，就用恒速模型！
+    - **图优化**：(1) 构造object slam问题，传统slam中图优化的顶点包括cam位姿，和map_point的3D位置，这里的顶点包括cam位姿，和obj位姿！(2) 局部优化时，只优化当前帧的cam位姿；全局优化时，则连同obj位姿一起优化，所以edge对应有一元边和二元边两种情形！(3) 各3D关键点作为edge的参数传入，经过T_O2G和T_G2C和内参K转化为预测的图像坐标uv，对应的检测到的2D关键点作为edge的观测量obs，两者之差即为重投影误差error！(4) 主观上，物体级slam中的obj位姿顶点，好比是传统slam中若干相对固定的map_point的集合！因为对于某个物体，假设它有10个关键点被检测到，则该物体可以构造出10条二元边edge，每条edge一头连着cam位姿，一头连着obj位姿，可以发现这10条edge连接的顶点是共享的，只是传入的3D关键点参数和设置的观测值不同而已！所以，这10个关键点可以看作是传统slam中，位置相对固定的点集，优化时不能各自自由调整位置，而是始终约束具有固定的相对位置！
+    - **图优化代码说明**：作者在g2o代码库中，新增了object_slam类型，定义了2种edge，实现上述(3)中的功能：
+    `edge = g2o.EdgeSE3ProjectFromFixedObject(cam_k, model_pts[k], object_verts[obj_id])`, 和`edge = g2o.EdgeSE3ProjectFromObject(cam_k, model_pts[k])`；前者是一元边，用于局部优化当前帧，后者是二元边，用于全局优化！可见，相机内参和3D关键点是作为参数传入，对于一元边，物体位姿T_O2G也是作为参数传入，然后检测的2D关键点坐标充当edge的观测量：`edge.set_measurement(uv[k])`。另外，整个代码实现，加入了很多robust操作：比如check pose的有效性(不能让投影后的深度为"负"值)，比如根据edge.chi2()，将各关键点设置为inlier/outlier，从而动态调整参与图优化的edge集合！
+    ![suo-slam_pipe](assets_pose/suo-slam_pipe.png)
+
+</details>
+
+
+---
+补充：关于对预测结果添加置信度，可参考DenseFusion，GPV-Pose；关于不确定性建模，可参考suo-slam，CenterPoseTrack的Eq.(1)~(3)；
