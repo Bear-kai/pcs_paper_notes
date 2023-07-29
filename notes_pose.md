@@ -32,7 +32,13 @@ Using a Deep Point-wise Voting Network. [[IROS 2022]](https://arxiv.org/pdf/2208
 - **COPE** Stefan Thalhammer (TU Vienna), COPE: End-to-end trainable Constant Runtime Object Pose Estimation. [[WACV 2023]](https://openaccess.thecvf.com/content/WACV2023/papers/Thalhammer_COPE_End-to-End_Trainable_Constant_Runtime_Object_Pose_Estimation_WACV_2023_paper.pdf)
 
 
-- **CC3D** Jiahao Yang (北大), Robust Category-Level 3D Pose Estimation from Synthetic Data. [[arxiv 2023]](https://arxiv.org/pdf/2305.16124.pdf)
+- **SwinDePose** Zhujun Li (纽约城市大学), Depth-based 6DoF Object Pose Estimation using Swin Transformer. [[IROS 2023]](https://arxiv.org/pdf/2303.02133.pdf)[[github]](https://github.com/zhujunli1993/SwinDePose)
+
+
+- **LiCov-Pose** Fulin Liu (北航), Yinlin Hu (MagicLeap), Linear-Covariance Loss for End-to-End Learning of 6D Pose Estimation. [[arxiv 2023]](https://arxiv.org/pdf/2303.10346.pdf)
+
+
+- **ConformalKeypoint** Heng Yang, Marco Pavone (NVIDIA), Object Pose Estimation with Statistical Guarantees: Conformal Keypoint Detection and Geometric Uncertainty Propagation. [[CVPR 2023]](https://openaccess.thecvf.com/content/CVPR2023/papers/Yang_Object_Pose_Estimation_With_Statistical_Guarantees_Conformal_Keypoint_Detection_and_CVPR_2023_paper.pdf)[[github]](https://github.com/NVlabs/ConformalKeypoint)[cite 3]
 
 
 - **---** xxx (), xxx [[]]()
@@ -41,6 +47,7 @@ Using a Deep Point-wise Voting Network. [[IROS 2022]](https://arxiv.org/pdf/2208
 ### Year 2022
 
 - **`suo-slam`** Nathaniel Merrill (特拉华大学&TUM), **S**ymmetry and **U**ncertainty-Aware **O**bject **SLAM** for 6DoF Object Pose Estimation. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Merrill_Symmetry_and_Uncertainty-Aware_Object_SLAM_for_6DoF_Object_Pose_Estimation_CVPR_2022_paper.pdf)] [[github](https://github.com/rpng/suo_slam)] [cite 6]
+    - 相关 **unambig-obj-slam** Taekbeom Lee (首尔国立大学), Object-based SLAM utilizing unambiguous pose parameters considering general symmetry types. [[ICRA 2023]](https://arxiv.org/pdf/2303.07872.pdf)
 
 
 - **RNNPose** Yan Xu (CUHK), RNNPose: Recurrent 6-DoF Object Pose Refinement with Robust Correspondence Field Estimation and Pose Optimization. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_RNNPose_Recurrent_6-DoF_Object_Pose_Refinement_With_Robust_Correspondence_Field_CVPR_2022_paper.pdf)] [[github](https://github.com/DecaYale/RNNPose)] [cite 2]
@@ -72,9 +79,6 @@ for Object Pose Estimation with Learnt Surface Embeddings. [[CVPR 2022](https://
 
 
 - **ROPE** Bo Chen (University of Adelaide), Occlusion-Robust Object Pose Estimation with Holistic Representation. [[WACV 2022]](https://openaccess.thecvf.com/content/WACV2022/papers/Chen_Occlusion-Robust_Object_Pose_Estimation_With_Holistic_Representation_WACV_2022_paper.pdf)[[github]](http://github.com/BoChenYS/ROPE)[cite 7]
-
-
-- **MegaPose** Yann Labbe (Inria), Lucas Manuelli (Nvidia), MegaPose: 6D Pose Estimation of Novel Objects via Render & Compare. [[arxiv 2022]](https://arxiv.org/pdf/2212.06870.pdf)[[github]](https://megapose6d.github.io/)[cite 11]
 
 
 ### Year 2021 and before
@@ -158,6 +162,10 @@ Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers
 
 ### Year 2023
 
+
+- **Eval Toolbox**(评估工具) Leonard Brunsa, Patric Jensfelt (KTH瑞典皇家理工), RGB-D-Based Categorical Object **Pose and Shape** Estimation: Methods, Datasets, and Evaluation.[[arxiv 2023]](https://arxiv.org/pdf/2301.08147.pdf)[[github]](https://github.com/roym899/pose_and_shape_evaluation)
+
+
 - **IST-Net** Jianhui Liu (CUHK), Prior-free Category-level Pose Estimation with Implicit Space Transformation.[[arxiv 2023]](https://arxiv.org/pdf/2303.13479.pdf)
 
 
@@ -175,7 +183,14 @@ Estimation. [[CVPR 2020]](https://openaccess.thecvf.com/content_CVPR_2020/papers
 - **HS-Pose** [Linfang Zheng](https://cvlab-uob.github.io/team/linfang) (南方科大 & 英国伯明翰大学), HS-Pose: Hybrid Scope Feature Extraction for Category-level Object Pose Estimation. [[CVPR 2023]](https://openaccess.thecvf.com/content/CVPR2023/papers/Zheng_HS-Pose_Hybrid_Scope_Feature_Extraction_for_Category-Level_Object_Pose_Estimation_CVPR_2023_paper.pdf)[[github]](https://github.com/Lynne-Zheng-Linfang/HS-Pose)
 
 
-- **---** xxx (), xxx [[]]()
+- **TTA-COPE** Taeyeop Lee (KAIST), Jonathan Tremblay (NVIDIA), TTA-COPE: Test-Time Adaptation for Category-Level Object Pose Estimation. [[CVPR 2023]](https://openaccess.thecvf.com/content/CVPR2023/papers/Lee_TTA-COPE_Test-Time_Adaptation_for_Category-Level_Object_Pose_Estimation_CVPR_2023_paper.pdf)[[github]](https://taeyeop.com/ttacope)
+
+
+- **CC3D** Jiahao Yang (北大), Robust Category-Level 3D Pose Estimation from Synthetic Data. [[arxiv 2023]](https://arxiv.org/pdf/2305.16124.pdf)
+
+
+- **SOCS** Boyan Wan, Yifei Shi, Kai Xu (国防科大), SOCS: Semantically-aware Object Coordinate Space for Category-Level 6D Object Pose Estimation under Large Shape Variations. [[arxiv 2023]](https://arxiv.org/pdf/2303.10346)
+
 
 - **---** xxx (), xxx [[]]()
 
@@ -271,12 +286,18 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 - **Neural Object Fitting** Xu Chen (ETH), Category level object pose estimation via neural analysis-by-synthesis. [[ECCV 2020](https://arxiv.org/pdf/2008.08145)] [cite 78]
 
 
-## Few-shot
+## Few-shot （Unseen/Novel Object）
 
 - **---** xxx (), xxx [[]]()
 
 
 - **POPE** Zhiwen Fan (德州奥斯汀), Panwang Pan (字节跳动), POPE: 6-DoF Promptable Pose Estimation of Any Object, in Any Scene, with One Reference.[[arxiv 2023]](https://arxiv.org/pdf/2305.15727.pdf)[[github]]( https://paulpanwang.github.io/POPE/)
+
+
+- **NOPE** Van Nguyen Nguyen (巴黎高等学校), Thibault Groueix (Adobe), Yinlin Hu (MagicLeap), NOPE: Novel Object Pose Estimation from a Single Image.[[arxiv 2023]](https://arxiv.org/abs/2303.13612)
+
+
+- **GP3D** Frederik Hagelskjær (南丹麦大学), GP3D: Generalized Pose Estimation in 3D Point Clouds: A case study on bin picking.[[arxiv 2023]](https://arxiv.org/pdf/2303.16102.pdf)
 
 
 - **PoseMatcher** Pedro Castro (帝国理工), PoseMatcher: One-shot 6D Object Pose Estimation by Deep Feature Matching. [[arxiv 2023]](https://arxiv.org/pdf/2304.01382.pdf)[[github]](https://github.com/PedroCastro/PoseMatcher)
@@ -293,6 +314,9 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 
 
 - **FS6D** Yisheng He (HKUST & 旷视), FS6D: Few-Shot 6D Pose Estimation of Novel Objects. [[CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/papers/He_FS6D_Few-Shot_6D_Pose_Estimation_of_Novel_Objects_CVPR_2022_paper.pdf)] [[github](https://fs6d.github.io/)] [cite 1]
+
+
+- **MegaPose** Yann Labbe (Inria), Lucas Manuelli (Nvidia), MegaPose: 6D Pose Estimation of Novel Objects via Render & Compare. [[arxiv 2022]](https://arxiv.org/pdf/2212.06870.pdf)[[github]](https://megapose6d.github.io/)[cite 11]
 
 
 - **ZeroPose** Walter Goodwin ( Oxford), Zero-shot category-level object pose estimation.[[ECCV 2022]](https://arxiv.org/pdf/2204.03635.pdf)[[github]](https://github.com/applied-ai-lab/zero-shot-pose)[cite 11]
@@ -319,7 +343,13 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 ## Others
 
 
-- **UnBias** Elena Govi (University of Modena and Reggio), Uncovering the Background-Induced Bias in RGB based 6-DoF Object Pose Estimation.[[arxiv 2023]](https://arxiv.org/pdf/2304.08230.pdf)
+- **TransPoser** Yuta Yoshitake (京都大学), TransPoser: Transformer as an Optimizer for Joint Object Shape and Pose Estimation.[[arxiv 20233]](https://arxiv.org/pdf/2303.13477.pdf)
+
+
+- **RA-Det** Yang Hai (西电),...Yinlin Hu (MagicLeap), Rigidity-Aware Detection for 6D Object Pose Estimation.[[CVPR 2023]](https://openaccess.thecvf.com/content/CVPR2023/papers/Hai_Rigidity-Aware_Detection_for_6D_Object_Pose_Estimation_CVPR_2023_paper.pdf)
+
+
+- **UnMarkerBias** Elena Govi (University of Modena and Reggio), Uncovering the Background-Induced Bias in RGB based 6-DoF Object Pose Estimation.[[arxiv 2023]](https://arxiv.org/pdf/2304.08230.pdf)
 
 
 - **POMNet** Pose for Everything: Towards **C**ategory-**A**gnostic **P**ose **E**stimation. [[ECCV 2022]()] [[github](https://github.com/luminxu/Pose-for-Everything)]
@@ -354,6 +384,7 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 
 
 - **BundleTrack** Bowen Wen (罗格斯大学), BundleTrack: 6D Pose Tracking for Novel Objects without Instance or Category-Level 3D Models.[[IROS 2021]](https://arxiv.org/pdf/2108.00516.pdf) [[github](https://github.com/wenbowen123/BundleTrack)] [cite 48]
+    - 相关 **BundleSDF**: Bowen Wen, Jonathan Tremblay (NVIDIA), BundleSDF: Neural 6-DoF Tracking and 3D Reconstruction of Unknown Objects.[[CVPR 2023]](https://openaccess.thecvf.com/content/CVPR2023/papers/Wen_BundleSDF_Neural_6-DoF_Tracking_and_3D_Reconstruction_of_Unknown_Objects_CVPR_2023_paper.pdf)[[github]](https://bundlesdf.github.io/)
 
 
 - **RBOT** Henning Tjaden (RheinMain University), A Region-based Gauss-Newton Approach to Real-Time Monocular Multiple Object Tracking. [[TPAMI 2018]](https://arxiv.org/pdf/1807.02087.pdf) [[github]](https://github.com/henningtjaden/RBOT) [cite 75]
@@ -387,6 +418,19 @@ annotations. [[CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/
 - **网络结构**
     ![](assets_pose/.png)
     ![](assets_pose/.png)
+
+</details>
+
+
+<details>
+<summary> <b> Eval-Toolbox (arxiv 2023) 综述&评测：位姿+形状  </b> </summary>
+
+- **摘要**：Recently, various methods for 6D **pose and shape estimation** of objects at a per-category level have been proposed. This work provides an overview of the field in terms of methods, datasets, and evaluation protocols. We propose a new set of metrics, contribute new annotations for the Redwood dataset, and evaluate state-of-the-art methods in a fair comparison. We provide an easy-to-use evaluation toolbox with well-defined metrics, methods, and dataset interfaces.
+
+- **综述**
+    ![EvalToolbox_overview](assets_pose/EvalToolbox_overview.png)
+    ![EvalToolbox_datasets](assets_pose/EvalToolbox_datasets.png)
+    ![EvalToolbox_results](assets_pose/EvalToolbox_results.png)
 
 </details>
 
